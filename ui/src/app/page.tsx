@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { RootState } from "@/state/store";
-import { useCallback, useMemo, useState } from "react";
+import { useState } from "react";
 import { nuiCallback } from "@/lib/nuiCallback";
 import { useSearchParams } from "next/navigation";
 
