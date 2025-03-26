@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { RootState } from "@/state/store";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { nuiCallback } from "@/lib/nuiCallback";
 import { useSearchParams } from "next/navigation";
 
@@ -14,11 +14,11 @@ export default function Home() {
 
 	if (!display && !searchParams.get("preview")) return null;
 
-	const getPlayerCount = () => {
+	const getPlayerCount = useCallback(() => {
 		nuiCallback("/getPlayerCount", {}, (result: number) => {
 			setPlayerCount(result);
 		});
-	};
+	}, []);
 
 	return (
 		<main className="flex flex-col items-center justify-between min-h-screen p-24">

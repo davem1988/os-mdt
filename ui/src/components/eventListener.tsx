@@ -29,7 +29,7 @@ export default function EventListener({ children }: EventListenerProps) {
 
 		return () => {
 			document.removeEventListener("keydown", onKeyDown);
-			window.addEventListener("message", onMessage);
+			window.removeEventListener("message", onMessage);
 		};
 	}, [onMessage, onKeyDown]);
 

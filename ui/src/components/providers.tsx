@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import store from "@/state/store";
 import { ThemeProvider } from "next-themes";
