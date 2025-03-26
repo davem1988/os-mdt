@@ -14,11 +14,11 @@ export default function Home() {
 
 	if (!display && !searchParams.get("preview")) return null;
 
-	const getPlayerCount = useCallback(() => {
+	const getPlayerCount = () => {
 		nuiCallback("/getPlayerCount", {}, (result: number) => {
 			setPlayerCount(result);
 		});
-	}, []);
+	};
 
 	return (
 		<main className="flex flex-col items-center justify-between min-h-screen p-24">
