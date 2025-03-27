@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from 'react'
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
 				<Providers>
 				<Suspense fallback={<HomeFallback />}>
 				<div className="w-full h-full p-0 m-0 flex justify-center items-center">
-					<img src="background_tablet.png" alt="background" width="1000px" height="800px" className="absolute top-[10%] left-[24%]"/>
+					<Image src="/background_tablet.png" alt="background" width={1000} height={800} className="absolute top-[10%] left-[24%]"/>
 					{children}
 				</div>
         		</Suspense>
