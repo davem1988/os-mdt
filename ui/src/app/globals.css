@@ -14,3 +14,24 @@ main {
 	color: white;
 	background: rgba(0, 0, 0, 0);
 }
+
+::-webkit-scrollbar {
+	width: 4.5px;
+}
+  
+::-webkit-scrollbar-thumb {
+	background-color: #9e9e9e59; /* Custom thumb color */
+	border-radius: 2px; /* Rounded thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+	cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+	cursor: grabbing;
+}
+  
+::-webkit-scrollbar-track {
+	background: transparent; /* Transparent track */
+}
