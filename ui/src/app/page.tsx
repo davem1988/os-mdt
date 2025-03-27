@@ -21,9 +21,9 @@ export default function Home() {
 		{ rank: "SGT 02", name: "John Doe", unit: "Tango" },
 		{ rank: "SGT 02", name: "John Doe", unit: "Mary" },
 		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
-	  ];
-	
-	  const recentAlerts: Alert[] = [
+	];
+
+	const recentAlerts: Alert[] = [
 		{
 		  title: "Braquage Fleeca",
 		  location: "Vinewood Boulevard",
@@ -39,7 +39,11 @@ export default function Home() {
 		  location: "Legion Square",
 		  timeAgo: "Il y a 25 minutes",
 		},
-	  ];
+	];
+
+	useEffect(() => {
+		getPlayerData();
+	}, []);
 
 	if (!display && !searchParams.get("preview")) return null;
 
@@ -48,10 +52,6 @@ export default function Home() {
 			setPlayerData(result);
 		});
 	};
-
-	useEffect(() => {
-		getPlayerData();
-	}, [])
 
 	return (
 		<main className="flex items-center justify-center min-h-screen w-screen z-50 mt-10">
@@ -79,7 +79,6 @@ export default function Home() {
         		    </div>
           		</div>
 			</AppLayout>
-			
 		</main>
 	);
 }
