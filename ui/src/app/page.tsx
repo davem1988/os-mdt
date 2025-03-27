@@ -20,7 +20,7 @@ export default function Home() {
 	}; */
 
 	return (
-		<main className="flex items-center justify-center min-h-screen w-screen z-50">
+		<main className="flex items-center justify-center min-h-screen w-screen z-50 mt-10">
 			<AppLayout/>
 			
 		</main>
