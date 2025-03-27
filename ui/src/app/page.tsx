@@ -41,17 +41,18 @@ export default function Home() {
 		},
 	];
 
+	const getPlayerData = () => {
+		nuiCallback("/getPlayerData", {}, (result: any) => {
+			setPlayerData(result);
+		});
+	};
+
 	useEffect(() => {
 		getPlayerData();
 	}, []);
 
 	if (!display && !searchParams.get("preview")) return null;
 
-	const getPlayerData = () => {
-		nuiCallback("/getPlayerData", {}, (result: any) => {
-			setPlayerData(result);
-		});
-	};
 
 	return (
 		<main className="flex items-center justify-center min-h-screen w-screen z-50 mt-10">
