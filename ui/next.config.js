@@ -6,7 +6,7 @@ const nextConfig = {
           source: "/:path*",
           headers: [
             { key: "X-Frame-Options", value: "SAMEORIGIN" },
-            { key: "Content-Security-Policy", value: "frame-ancestors 'self' http://localhost:*" }
+            { key: "Content-Security-Policy", value: "frame-ancestors 'self' http://localhost:* http://136.243.60.24:30110" }
           ]
         }
       ];
