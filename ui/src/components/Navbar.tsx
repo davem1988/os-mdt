@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="flex flex-col items-center px-4 pt-5 pb-11 max-w-full text-sm text-center text-white rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[114px]" aria-label="Main Navigation">
+    <nav className="flex flex-col items-center px-4 pt-5 pb-11 max-w-full text-sm text-center text-white rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[114px] backdrop-blur-sm" aria-label="Main Navigation">
       <div className="flex flex-col self-stretch px-3.5 py-0.5 whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/84261f3c7ee01b13d6462c6a881bc14cdae468c4?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5"

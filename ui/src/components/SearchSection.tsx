@@ -25,7 +25,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen }) => {
   const citizenData: CitizenInfo = initialCitizen || {
     fullName: "John Doe de la Cruz",
     birthDate: "01/02/2000",
-    infractions: [{ type: "Braquage" }, { type: "Agression" }],
+    infractions: [{ type: "Braquage" }, { type: "Agression" }, { type: "Agression sur agent" }],
     vehicles: [{ name: "Sultan RS" }, { name: "Jugular de voyou" }, { name: "Jugular de voyou" }],
     photoUrl:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/44a3c9b9b797cb2a1016de92aeb9f8b1f8d86bd9?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5",
@@ -33,7 +33,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen }) => {
 
   return (
     <section
-      className="grow py-5 pr-7 pl-3.5 w-full rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5 max-md:mt-5 max-md:max-w-full max-h-[645px]"
+      className="grow py-5 pr-7 pl-3.5 w-full rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5 max-md:mt-5 max-md:max-w-full max-h-[645px] backdrop-blur-sm"
       aria-labelledby="search-section-title"
     >
       <div className="flex gap-5 max-md:flex-col">
@@ -112,7 +112,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen }) => {
             </div>
 
             <h3 className="self-start mt-4 text-sm text-white">Infractions</h3>
-            <div className="flex gap-2.5 items-start px-2.5 pt-2 pb-10 text-sm text-white whitespace-nowrap rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+            <div className="flex gap-2 px-2.5 pt-3.5 pb-9 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
             <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
                 {citizenData.infractions.map((infraction, index) => (
                   <div
@@ -133,7 +133,6 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen }) => {
                 </div>
                 ))}
               </div>
-              <div className="flex shrink-0 w-1 rounded-md bg-zinc-400 bg-opacity-30 h-[118px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
             </div>
 
             <h3 className="self-start mt-4 text-sm text-white">Véhicules</h3>

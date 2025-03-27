@@ -15,16 +15,17 @@ const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts }) => {
         Dernières alertes
       </h2>
       <div
-        className="flex gap-3 px-2.5 py-2.5 text-xs rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+        className="flex gap-3 px-2.5 py-2.5 text-xs rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[280px] backdrop-blur-sm"
         role="log"
         aria-live="polite"
       >
-        <div className="grow shrink-0 self-start basis-0 w-fit">
+        <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
           {alerts.map((alert, index) => (
             <div
               key={`alert-${index}`}
-              className="flex gap-5 justify-between py-1.5 pr-4 pl-1.5 rounded-md"
+              className="relative flex gap-1 justify-between px-2.5 py-2 rounded-md text-white mb-2"
             >
+                <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%]"></div>
               <div className="flex flex-col">
                 <h3 className="text-sm font-bold text-white">{alert.title}</h3>
                 <p className="text-white max-md:mr-2">{alert.location}</p>
@@ -42,10 +43,6 @@ const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts }) => {
             </div>
           ))}
         </div>
-        <div
-          className="flex shrink-0 w-1 rounded-md bg-zinc-400 bg-opacity-10 h-[250px]"
-          role="presentation"
-        />
       </div>
     </section>
   );

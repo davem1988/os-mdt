@@ -21,6 +21,15 @@ export default function Home() {
 		{ rank: "SGT 02", name: "John Doe", unit: "Tango" },
 		{ rank: "SGT 02", name: "John Doe", unit: "Mary" },
 		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
+		{ rank: "SGT 02", name: "John Doe", unit: "PDP" },
 	];
 
 	const recentAlerts: Alert[] = [
@@ -38,6 +47,16 @@ export default function Home() {
 		  title: "Braquage ATM",
 		  location: "Legion Square",
 		  timeAgo: "Il y a 25 minutes",
+		},
+		{
+			title: "Braquage ATM",
+			location: "Legion Square",
+			timeAgo: "Il y a 25 minutes",
+		},
+		{
+			title: "Braquage ATM",
+			location: "Legion Square",
+			timeAgo: "Il y a 25 minutes",
 		},
 	];
 
