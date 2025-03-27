@@ -1,16 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    async headers() {
-      return [
-        {
-          source: "/:path*",
-          headers: [
-            { key: "X-Frame-Options", value: "SAMEORIGIN" }
-          ]
-        }
-      ];
-    }
-};
+const nextConfig = {};
   
 module.exports = nextConfig;
   
