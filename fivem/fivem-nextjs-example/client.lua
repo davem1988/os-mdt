@@ -1,3 +1,5 @@
+QBCore = exports['qb-core']:GetCoreObject()
+
 local function displayNUI(display)
     SendNUIMessage({
         type = "app/setDisplay",
@@ -9,24 +11,34 @@ end
 
 RegisterKeyMapping("+"..cfg.cmd, "Open "..cfg.resourceName.." NUI", "keyboard", cfg.hotkey)
 RegisterCommand("+"..cfg.cmd, function()
+    local Player = QBCore.Functions.GetPlayerData()
     displayNUI(true)
-end)
+    SetNuiFocus(true, true)
+end, false)
+
 
 RegisterCommand(cfg.cmd, function(source, args, raw)
+    local Player = QBCore.Functions.GetPlayerData()
     displayNUI(true)
-end)
+    SetNuiFocus(true, true)
+end, false)
+
 RegisterCommand(cfg.cmd.."_close", function(source, args, raw)
     displayNUI(false)
-end)
+    SetNuiFocus(false, false)
+end, false)
+
 
 AddEventHandler("onResourceStop", function(resource)
     if resource == cfg.resourceName then
         displayNUI(false)
+        SetNuiFocus(false, false)
     end
 end)
 
 RegisterNUICallback("close", function(data, cb)
     displayNUI(false)
+    SetNuiFocus(false, false)
     cb(true)
 end)
 
