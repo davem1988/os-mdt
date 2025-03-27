@@ -2,6 +2,7 @@ import Providers from "@/components/providers";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +16,19 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
+	function HomeFallback() {
+		return <>placeholder</>
+	}
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
-				<Providers>{children}</Providers>
+				<Providers>
+				<Suspense fallback={<HomeFallback />}>
+          			{children}
+        		</Suspense>
+				</Providers>
 			</body>
 		</html>
 	);
