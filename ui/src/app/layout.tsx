@@ -27,10 +27,8 @@ export default function RootLayout({
 			<body className={`${inter.className} p-0 m-0`}>
 				<Providers>
 				<Suspense fallback={<HomeFallback />}>
-				<div className="w-full h-full p-0 m-0 flex justify-center items-center">
-					<Image src="/background_tablet.png" alt="background" width={1000} height={800} className="absolute top-[10%] left-[24%]"/>
+					<Image src="/background_tablet.png" alt="background" width={1000} height={800} className="absolute top-[10%] left-[24%] -z-10"/>
 					{children}
-				</div>
         		</Suspense>
 				</Providers>
 			</body>
