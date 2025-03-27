@@ -8,6 +8,7 @@
 
 html, body {
 	background: transparent !important;
+	user-select: none;
 }
 
 main {
