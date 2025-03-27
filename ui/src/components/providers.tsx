@@ -11,7 +11,7 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
 	return (
-		<ThemeProvider enableSystem attribute="class">
+		<ThemeProvider defaultTheme="light" attribute="class">
 			<Provider store={store}>
 				<EventListener>{children}</EventListener>
 			</Provider>
