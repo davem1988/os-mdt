@@ -8,7 +8,7 @@ function AppLayout({
 }) {
   return (
     <div className='w-full h-full'>
-        <Image src="/background_tablet.png" alt="background" width={1300} height={1000} className="absolute top-[10%] left-[24%] -z-10"/>
+        <Image src="/background_tablet.png" alt="background" width={1300} height={1000} className="absolute top-[1%] left-[16%] -z-10"/>
         {children}
     </div>
   )
