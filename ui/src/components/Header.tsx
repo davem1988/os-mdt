@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
                       alt="Officer badge"
                     />
                     <div className="flex-auto my-auto w-[366px]">
-                      <span className="font-bold">{officerInfo ? `${officerInfo?.job.grade.name} ${officerInfo?.metadata.callsign}` : "Commandant 12"}</span> - {officerInfo?.charinfo.firstname || "Tony Benetti"}
+                      <span className="font-bold">{officerInfo ? `${officerInfo?.job.grade.name} ${officerInfo?.metadata.callsign}` : "Commandant 12"}</span> - {officerInfo?.charinfo.lastname || "Tony Benetti"}
                     </div>
                   </div>
                   
