@@ -23,10 +23,13 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={inter.className}>
+			<body className={`${inter.className} p-0 m-0`}>
 				<Providers>
 				<Suspense fallback={<HomeFallback />}>
-          			{children}
+				<div className="w-full h-full p-0 m-0 flex justify-center items-center">
+					<img src="background_tablet.png" alt="background" width="1000px" height="800px" className="absolute top-[10%] left-[24%]"/>
+					{children}
+				</div>
         		</Suspense>
 				</Providers>
 			</body>

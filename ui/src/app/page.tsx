@@ -20,18 +20,21 @@ export default function Home() {
 	};
 
 	return (
-		<main className="flex flex-col items-center justify-between min-h-screen p-24">
-			<div className="flex flex-col items-center gap-2">
-				<button
-					className="px-5 py-2 text-white transition-all ease-in-out bg-blue-500 rounded-md hover:scale-105"
-					onClick={() => getPlayerCount()}
-				>
-					Get Player Count
-				</button>
-				<p>
-					Player Count: {playerCount || <strong>Click button to load</strong>}
-				</p>
+		<main className="flex flex-col items-center justify-center min-h-screen w-screen z-50">
+			<div className="container">
+				<div className="flex flex-col items-center justify-center">
+					<button
+						className="px-5 py-2 text-white transition-all ease-in-out bg-blue-500 rounded-md hover:scale-105"
+						onClick={() => getPlayerCount()}
+					>
+						Get Player Count
+					</button>
+					<p>
+						Player Count: {playerCount || <strong>Click button to load</strong>}
+					</p>
+				</div>
 			</div>
+			
 		</main>
 	);
 }
