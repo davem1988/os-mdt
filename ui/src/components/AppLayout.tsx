@@ -15,18 +15,6 @@ const AppLayout = ({
   const [playerData, setPlayerData] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState<string>("");
 
-  
-
-  const getPlayerData = () => {
-    nuiCallback("/getPlayerData", {}, (result: any) => {
-      setPlayerData(result);
-    });
-  };
-
-  useEffect(() => {
-    getPlayerData();
-  }, [])
-
   useEffect(() => {
     const interval = setInterval(() => {
       const formattedDate = new Intl.DateTimeFormat("fr-FR", {
@@ -49,6 +37,18 @@ const AppLayout = ({
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
   }, []);
+
+  const getPlayerData = () => {
+    nuiCallback("/getPlayerData", {}, (result: any) => {
+      setPlayerData(result);
+    });
+  };
+
+  useEffect(() => {
+    getPlayerData();
+  }, [])
+
+  
 
   return (
     <main className="overflow-hidden">
