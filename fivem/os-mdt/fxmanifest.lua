@@ -13,13 +13,13 @@ shared_scripts {
 
 client_scripts {
     "config.lua",
-    "client.lua"
+    "client/*.lua"
 }
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
     "config.lua",
-    "server.lua"
+    "server/*.lua"
 }
 
-ui_page "https://fivem-nextjs-boilerplate.vercel.app/"
+ui_page "https://os-mdt.vercel.app/"

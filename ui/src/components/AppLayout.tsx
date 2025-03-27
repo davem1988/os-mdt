@@ -1,46 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import SearchSection from "./SearchSection";
-import DutyRoster from "./DutyRoster";
-import AlertsSection from "@/components/AlertSection";
-import { DutyOfficer, Alert, OfficerInfo } from "@/lib/types";
+import { OfficerInfo } from "@/lib/types";
+import { nuiCallback } from "@/lib/nuiCallback";
 
-const AppLayout: React.FC = () => {
+const AppLayout = ({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
   // Mock data for the components
-  const officerInfo: OfficerInfo = {
-    rank: "Sergent 02",
-    name: "John Doe",
+  const [playerData, setPlayerData] = useState(null);
+
+  const currentDateTime = new Intl.DateTimeFormat('fr-FR', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  }).format(new Date()).replace(',', '').replace(/\//g, '-');
+
+  const getPlayerData = () => {
+    nuiCallback("/getPlayerData", {}, (result: any) => {
+      setPlayerData(result);
+    });
   };
 
-  const currentDateTime = "Jeudi 27/03/2025 - 02:22";
-
-  const dutyOfficers: DutyOfficer[] = [
-    { rank: "SGT 02", name: "John Doe", unit: "Adam" },
-    { rank: "SGT 02", name: "John Doe", unit: "Tango" },
-    { rank: "SGT 02", name: "John Doe", unit: "Mary" },
-    { rank: "SGT 02", name: "John Doe", unit: "PDP" },
-  ];
-
-  const recentAlerts: Alert[] = [
-    {
-      title: "Braquage Fleeca",
-      location: "Vinewood Boulevard",
-      timeAgo: "Il y a 10 minutes",
-    },
-    {
-      title: "Car jacking",
-      location: "Harwick Avenue",
-      timeAgo: "Il y a 15 minutes",
-    },
-    {
-      title: "Braquage ATM",
-      location: "Legion Square",
-      timeAgo: "Il y a 25 minutes",
-    },
-  ];
+  useEffect(() => {
+    getPlayerData();
+  }, [])
 
   return (
     <main className="overflow-hidden">
@@ -54,7 +47,7 @@ const AppLayout: React.FC = () => {
         />
 
         {/* Header section */}
-        <Header officerInfo={officerInfo} currentDateTime={currentDateTime} />
+        <Header officerInfo={playerData} currentDateTime={currentDateTime} />
 
         {/* Main content area with navbar and content sections */}
         <div className="flex relative flex-wrap gap-10 mt-1.5 w-full max-md:max-w-full">
@@ -62,22 +55,7 @@ const AppLayout: React.FC = () => {
           <Navbar />
 
           {/* Main content area */}
-          <div className="flex-auto max-md:max-w-full">
-            <div className="flex gap-2 max-md:flex-col">
-              {/* Search and results section */}
-              <div className="w-[67%] max-md:ml-0 max-md:w-full">
-                <SearchSection />
-              </div>
-
-              {/* Duty roster and alerts section */}
-              <div className="ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col w-full text-white max-md:mt-5">
-                  <DutyRoster officers={dutyOfficers} />
-                  <AlertsSection alerts={recentAlerts} />
-                </div>
-              </div>
-            </div>
-          </div>
+          {children}
         </div>
       </div>
     </main>

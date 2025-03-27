@@ -2,7 +2,7 @@ import React from "react";
 import { OfficerInfo } from "@/lib/types";
 
 interface HeaderProps {
-  officerInfo: OfficerInfo;
+  officerInfo: any;
   currentDateTime: string;
 }
 
@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
               <div className="w-[21%] max-md:ml-0 max-md:w-full">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/abee3d43e857db06b3cc4241d949b949b06fe020?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5"
-                  className="object-contain shrink-0 max-w-full aspect-square shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[114px] max-md:mt-10"
+                  className="object-contain shrink-0 max-w-full rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[114px] max-md:mt-10 mb-10"
                   alt="LSPD Logo"
                 />
               </div>
@@ -30,12 +30,10 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
                       alt="Officer badge"
                     />
                     <div className="flex-auto my-auto w-[366px]">
-                      <span className="font-bold">{officerInfo.rank}</span> - {officerInfo.name}
+                      <span className="font-bold">{officerInfo ? `${officerInfo?.job.grade.name} ${officerInfo?.callsign}` : "Commandant 12"}</span> - {officerInfo?.name || "Tony Benetti"}
                     </div>
                   </div>
-                  <h2 className="self-start mt-16 text-base text-center max-md:mt-10">
-                    Rechercher un citoyen
-                  </h2>
+                  
                 </div>
               </div>
             </div>
@@ -65,9 +63,6 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
                 <button className="text-base" aria-label="View map">
                   Consulter la carte
                 </button>
-                <h2 className="self-center mt-12 ml-14 text-base max-md:mt-10">
-                  En service
-                </h2>
               </div>
             </div>
           </div>
