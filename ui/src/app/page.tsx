@@ -5,7 +5,7 @@ import { RootState } from "@/state/store";
 import { useState } from "react";
 import { nuiCallback } from "@/lib/nuiCallback";
 import { useSearchParams } from "next/navigation";
-import AppLayout from "@/components/appLayout";
+import AppLayout from "@/components/AppLayout";
 
 export default function Home() {
 	const searchParams = useSearchParams();
