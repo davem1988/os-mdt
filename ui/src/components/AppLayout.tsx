@@ -13,17 +13,9 @@ const AppLayout = ({
 }) => {
   // Mock data for the components
   const [playerData, setPlayerData] = useState(null);
+  const [currentDateTime, setCurrentDateTime] = useState<string>("");
 
-  const currentDateTime = new Intl.DateTimeFormat('fr-FR', {
-    timeZone: 'Europe/Paris',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hourCycle: 'h23'
-  }).format(new Date()).replace(',', '').replace(/\//g, '-');
+  
 
   const getPlayerData = () => {
     nuiCallback("/getPlayerData", {}, (result: any) => {
@@ -34,6 +26,29 @@ const AppLayout = ({
   useEffect(() => {
     getPlayerData();
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const formattedDate = new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+      })
+        .format(new Date())
+        .replace(",", "")
+        .replace(/\//g, "-");
+
+      setCurrentDateTime(formattedDate);
+    }, 1000); // Update every second
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="overflow-hidden">
