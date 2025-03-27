@@ -25,7 +25,7 @@ export default function RootLayout({
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className} p-0 m-0`}>
+			<body className={`${inter.className} p-0 m-0 overflow-hidden`}>
 				<Providers>
 				<Suspense fallback={<HomeFallback />}>
 					{children}
