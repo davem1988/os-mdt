@@ -16,8 +16,8 @@ export const nuiCallback = async <T extends Record<string, any>, K>(
 		);
 		if (!cb) return;
 		cb(await result.json());
-	} catch (error) {
-		console.log(error);
+	} catch (error: any) {
+		console.log("Callback error: " + error);
 		throw error;
 	}
 };
