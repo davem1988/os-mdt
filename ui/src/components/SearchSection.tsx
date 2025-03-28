@@ -59,19 +59,24 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
             <div className="flex gap-1 px-1.5 py-2 mt-6 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
               <div className="flex flex-col self-start mt-3 w-full text-sm text-white">
-                {/* Display players based on the search query */}
-                {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => (
-                  <div key={index} onClick={() => console.log(`Selected player: ${player.name}`)}>
-                    <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{player.name}</h3>
-                  </div>
-                ))}
+                {/* Only render if searchQuery is not empty */}
+                {searchQuery && (
+                  <>
+                    {/* Display players based on the search query */}
+                    {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => (
+                      <div key={index} onClick={() => console.log(`Selected player: ${player.name}`)}>
+                        <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{player.name}</h3>
+                      </div>
+                    ))}
 
-                {/* Display vehicles based on the search query */}
-                {filteredVehicles && filteredVehicles.length > 0 && filteredVehicles.map((vehicle: any, index: any) => (
-                  <div key={index} onClick={() => console.log(`Selected vehicle: ${vehicle.plate}`)}>
-                    <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{vehicle.plate}</h3>
-                  </div>
-                ))}
+                    {/* Display vehicles based on the search query */}
+                    {filteredVehicles && filteredVehicles.length > 0 && filteredVehicles.map((vehicle: any, index: any) => (
+                      <div key={index} onClick={() => console.log(`Selected vehicle: ${vehicle.plate}`)}>
+                        <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{vehicle.plate}</h3>
+                      </div>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>
