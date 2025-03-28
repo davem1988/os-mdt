@@ -28,9 +28,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
       // Parse the charinfo string into an object
       const charinfo = JSON.parse(player.charinfo);
       const fullName = `${charinfo.firstname} ${charinfo.lastname}`.toLowerCase();
-      if(fullName.includes(searchQuery.toLowerCase())){
-        return player;
-      };
+      return fullName.includes(searchQuery.toLowerCase());
     });
   }, [searchQuery, players]);
 
@@ -67,11 +65,16 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                 {searchQuery && (
                   <>
                     {/* Display players based on the search query */}
-                    {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => (
-                      <div key={index} onClick={() => console.log(`Selected player: ${player.name}`)}>
-                        <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{player.name}</h3>
-                      </div>
-                    ))}
+                    {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => {
+                      const charinfo = JSON.parse(player.charinfo);
+                      return (
+                        <div key={index} onClick={() => console.log(`Selected player: ${charinfo.firstname} ${charinfo.lastname}`)}>
+                          <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
+                            {charinfo.firstname} {charinfo.lastname}
+                          </h3>
+                        </div>
+                      );
+                    })}
 
                     {/* Display vehicles based on the search query */}
                     {filteredVehicles && filteredVehicles.length > 0 && filteredVehicles.map((vehicle: any, index: any) => (
