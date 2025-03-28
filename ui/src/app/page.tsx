@@ -17,9 +17,7 @@ export default function Home() {
   const [playerData, setPlayerData] = useState(null);
   const [players, setPlayers] = useState<any>();
   const [vehicles, setVehicles] = useState<any>();
-
-  // Early return to avoid rendering the component if conditions aren't met
-  if (!display && !searchParams.get("preview")) return null;
+  
 
   const dutyOfficers: DutyOfficer[] = [
     // Dummy data
@@ -54,6 +52,8 @@ export default function Home() {
     getAllPLayers();
     getAllVehicles();
   }, []); // This will always be called the same way
+
+  if (!display && !searchParams.get("preview")) return null;
 
   return (
     <main className="flex items-center justify-center min-h-screen w-screen z-50 mt-10">
