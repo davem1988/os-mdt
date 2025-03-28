@@ -24,14 +24,14 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
   // Filter players and vehicles based on search query
   const filteredPlayers = useMemo(() => {
-    return players.filter((player: any) => {
+    return players?.filter((player: any) => {
       const fullName = `${player.charinfo.firstname} ${player.charinfo.lastname}`.toLowerCase();
       return fullName.includes(searchQuery.toLowerCase());
     });
   }, [searchQuery, players]);
 
   const filteredVehicles = useMemo(() => {
-    return vehicles.filter((vehicle: any) =>
+    return vehicles?.filter((vehicle: any) =>
       vehicle.plate.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery, vehicles]);
