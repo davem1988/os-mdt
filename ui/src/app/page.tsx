@@ -18,6 +18,8 @@ export default function Home() {
 	const [players, setPlayers] = useState<any>();
 	const [vehicles, setVehicles] = useState<any>();
 
+	if (!display && !searchParams.get("preview")) return null;
+
 	const dutyOfficers: DutyOfficer[] = [
 		{ rank: "SGT 02", name: "John Doe", unit: "Adam" },
 		{ rank: "SGT 02", name: "John Doe", unit: "Tango" },
@@ -87,8 +89,6 @@ export default function Home() {
 		getAllPLayers();
 		getAllVehicles();
 	}, []);
-
-	if (!display && !searchParams.get("preview")) return null;
 
 
 	return (
