@@ -15,6 +15,8 @@ export default function Home() {
 	const searchParams = useSearchParams();
 	const display = useSelector((state: RootState) => state.app.display);
 	const [playerData, setPlayerData] = useState(null);
+	const [players, setPlayers] = useState<any[]>([]);
+	const [vehicles, setVehicles] = useState<any[]>([]);
 
 	const dutyOfficers: DutyOfficer[] = [
 		{ rank: "SGT 02", name: "John Doe", unit: "Adam" },
@@ -66,8 +68,22 @@ export default function Home() {
 		});
 	};
 
+	const getAllPLayers = () => {
+		nuiCallback("/getAllPlayers", {}, (result: any) => {
+			setPlayers(result);
+		});
+	};
+
+	const getAllVehicles = () => {
+		nuiCallback("/getAllVehicles", {}, (result: any) => {
+			setVehicles(result);
+		});
+	};
+
 	useEffect(() => {
 		getPlayerData();
+		getAllPLayers();
+		getAllVehicles();
 	}, []);
 
 	if (!display && !searchParams.get("preview")) return null;
@@ -83,7 +99,7 @@ export default function Home() {
 					  	<h2 className="self-start mt-[-27px] mb-1 text-base text-start max-md:mt-[-25px]">
                     		Rechercher un citoyen
                   		</h2>
-        		        <SearchSection />
+        		        <SearchSection players={players} vehicles={vehicles} />
         		      </div>
 
         		      {/* Duty roster and alerts section */}

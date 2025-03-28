@@ -15,7 +15,7 @@ const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts }) => {
         Dernières alertes
       </h2>
       <div
-        className="flex gap-3 px-2.5 py-2.5 text-xs rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[280px] backdrop-blur-sm"
+        className="flex gap-3 px-2.5 py-2.5 text-xs rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] h-[320px] backdrop-blur-sm"
         role="log"
         aria-live="polite"
       >
@@ -25,18 +25,22 @@ const AlertsSection: React.FC<AlertsSectionProps> = ({ alerts }) => {
               key={`alert-${index}`}
               className="relative flex gap-1 justify-between px-2.5 py-2 rounded-md text-white mb-2"
             >
-                <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%]"></div>
-              <div className="flex flex-col">
+              {/* Fix: Background overlay with pointer-events-none */}
+              <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%] z-1 pointer-events-none"></div>
+          
+              <div className="flex flex-col z-2">
                 <h3 className="text-sm font-bold text-white">{alert.title}</h3>
                 <p className="text-white max-md:mr-2">{alert.location}</p>
                 <time className="self-start font-light text-white">
                   {alert.timeAgo}
                 </time>
               </div>
-              <button aria-label={`Respond to ${alert.title} alert`}>
+          
+              {/* Fix: Ensure the button has high z-index */}
+              <button className="z-50 font-bold text-center cursor-pointer">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/b716b2fb0a5a9fb774971c8fb5a231335e0bc49a?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5"
-                  className="object-contain shrink-0 my-auto aspect-square w-[26px]"
+                  className="object-contain shrink-0 my-auto aspect-square w-[26px] cursor-pointer"
                   alt="Respond icon"
                 />
               </button>
