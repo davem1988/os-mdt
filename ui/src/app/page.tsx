@@ -15,8 +15,8 @@ export default function Home() {
 	const searchParams = useSearchParams();
 	const display = useSelector((state: RootState) => state.app.display);
 	const [playerData, setPlayerData] = useState(null);
-	const [players, setPlayers] = useState<any[]>([]);
-	const [vehicles, setVehicles] = useState<any[]>([]);
+	const [players, setPlayers] = useState<any>();
+	const [vehicles, setVehicles] = useState<any>();
 
 	const dutyOfficers: DutyOfficer[] = [
 		{ rank: "SGT 02", name: "John Doe", unit: "Adam" },
