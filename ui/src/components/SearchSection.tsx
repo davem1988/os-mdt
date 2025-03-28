@@ -5,8 +5,8 @@ import { CitizenInfo } from "@/lib/types";
 
 interface SearchSectionProps {
   initialCitizen?: CitizenInfo;
-  players: any[];
-  vehicles: any[];
+  players: any;
+  vehicles: any;
 }
 
 const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles }) => {
@@ -24,14 +24,14 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
   // Filter players and vehicles based on search query
   const filteredPlayers = useMemo(() => {
-    return players.filter((player) => {
+    return players.filter((player: any) => {
       const fullName = `${player.charinfo.firstname} ${player.charinfo.lastname}`.toLowerCase();
       return fullName.includes(searchQuery.toLowerCase());
     });
   }, [searchQuery, players]);
 
   const filteredVehicles = useMemo(() => {
-    return vehicles.filter((vehicle) =>
+    return vehicles.filter((vehicle: any) =>
       vehicle.plate.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery, vehicles]);
@@ -60,14 +60,14 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
             <div className="flex gap-1 px-1.5 py-2 mt-6 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
               <div className="flex flex-col self-start mt-3 w-full text-sm text-white">
                 {/* Display players based on the search query */}
-                {filteredPlayers.length > 0 && filteredPlayers.map((player, index) => (
+                {filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => (
                   <div key={index} onClick={() => console.log(`Selected player: ${player.name}`)}>
                     <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{player.name}</h3>
                   </div>
                 ))}
 
                 {/* Display vehicles based on the search query */}
-                {filteredVehicles.length > 0 && filteredVehicles.map((vehicle, index) => (
+                {filteredVehicles.length > 0 && filteredVehicles.map((vehicle: any, index: any) => (
                   <div key={index} onClick={() => console.log(`Selected vehicle: ${vehicle.plate}`)}>
                     <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">{vehicle.plate}</h3>
                   </div>
