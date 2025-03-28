@@ -24,6 +24,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
   // Filter players and vehicles based on search query
   const filteredPlayers = useMemo(() => {
+    console.log(players)
     return players?.filter((player: any) => {
       const fullName = `${player.charinfo.firstname} ${player.charinfo.lastname}`.toLowerCase();
       return fullName.includes(searchQuery.toLowerCase());
