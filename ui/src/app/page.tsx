@@ -70,12 +70,14 @@ export default function Home() {
 
 	const getAllPLayers = () => {
 		nuiCallback("/getAllPlayers", {}, (result: any) => {
+			console.log("All Players: " + result);
 			setPlayers(result);
 		});
 	};
 
 	const getAllVehicles = () => {
 		nuiCallback("/getAllVehicles", {}, (result: any) => {
+			console.log("All Vehicles: " + result);
 			setVehicles(result);
 		});
 	};
