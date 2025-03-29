@@ -12,6 +12,7 @@ interface SearchSectionProps {
 const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
+  const [selectedCharinfo, setSelectedCharinfo] = useState<any>(null);
 
   
 
@@ -63,8 +64,8 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                       return (
                         <div key={index} onClick={() => {
                           const charinfo = JSON.parse(player.charinfo);
-                          player.charinfo = charinfo
                           setSelectedCitizen(player);
+                          setSelectedCharinfo(charinfo);
                         }}>
                           <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
                             {charinfo.firstname} {charinfo.lastname}
@@ -92,8 +93,8 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
           <div className="flex flex-col w-full max-md:mt-9">
             <div className="flex gap-4">
               <div className="flex flex-col items-start py-3 pr-28 pl-3 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5">
-                <h3 className="text-sm font-bold text-white">{selectedCitizen ? `${selectedCitizen.charinfo.firstname} ${selectedCitizen.charinfo.lastname}` : 'No Data'}</h3>
-                <p className="mt-3.5 text-sm text-white">{selectedCitizen ? `Né le ${selectedCitizen.charinfo.birthdate}` : 'No Data'}</p>
+                <h3 className="text-sm font-bold text-white">{selectedCitizen ? `${selectedCharinfo.firstname} ${selectedCharinfo.lastname}` : 'No Data'}</h3>
+                <p className="mt-3.5 text-sm text-white">{selectedCitizen ? `Né le ${selectedCharinfo.birthdate}` : 'No Data'}</p>
               </div>
               <img
                 src={selectedCitizen && selectedCitizen.photoUrl ? selectedCitizen.photoUrl : 'https://static.vecteezy.com/system/resources/thumbnails/003/780/897/small/silhouette-of-anonymous-man-with-question-mark-in-mugshot-or-police-lineup-background-vector.jpg'}
