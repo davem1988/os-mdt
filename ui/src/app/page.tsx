@@ -15,13 +15,10 @@ export default function Home() {
   const searchParams = useSearchParams();
   const display = useSelector((state: RootState) => state.app.display);
   const [playerData, setPlayerData] = useState(null);
-  const [players, setPlayers] = useState(null);
+  const [players, setPlayers] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState(null);
+  const [dutyOfficers, setDutyOfficers] = useState<any[]>([]);
   
-
-  const dutyOfficers: DutyOfficer[] = [
-    // Dummy data
-  ];
 
   const recentAlerts: Alert[] = [
     // Dummy data
@@ -33,9 +30,9 @@ export default function Home() {
     });
   };
 
-  const getAllPLayers = () => {
+  const getAllPlayers = () => {
     nuiCallback("/getAllPlayers", {}, (result: any) => {
-      setPlayers(result);
+      setPlayers(result || []); // Ensure it's always an array
     });
   };
 
@@ -47,9 +44,17 @@ export default function Home() {
 
   useEffect(() => {
     getPlayerData();
-    getAllPLayers();
+    getAllPlayers();
     getAllVehicles();
   }, []); // This will always be called the same way
+
+  useEffect(() => {
+    const policeOnDuty = (players || []).filter(
+      (player) => player.job?.name === "police" && player.job?.onduty === true
+    );
+  
+    setDutyOfficers(policeOnDuty);
+  }, [players]);
 
   if (!display && !searchParams.get("preview")) return null;
 
