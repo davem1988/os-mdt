@@ -49,6 +49,7 @@ export default function Home() {
   }, []); // This will always be called the same way
 
   useEffect(() => {
+    console.log(players)
     const policeOnDuty = (players || []).filter((player) => {
       if (!player.job) return false; // Ensure job exists
   
