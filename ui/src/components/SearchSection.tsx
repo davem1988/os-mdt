@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { CitizenInfo } from "@/lib";
 import { formatDateToFrench } from "@/lib";
 import Image from "next/image";
@@ -15,6 +15,24 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
   const [selectedCharinfo, setSelectedCharinfo] = useState<any>(null);
+
+  useEffect(() => {
+    const savedCitizen = localStorage.getItem("selectedCitizen");
+    if (savedCitizen) {
+      const parsedCitizen = JSON.parse(savedCitizen);
+      setSelectedCitizen(parsedCitizen);
+      setSelectedCharinfo(JSON.parse(parsedCitizen.charinfo));
+    }
+  }, []);
+
+  const handleSelectCitizen = (player: any) => {
+    const charinfo = JSON.parse(player.charinfo);
+    setSelectedCitizen(player);
+    setSelectedCharinfo(charinfo);
+
+    // Sauvegarder dans localStorage
+    localStorage.setItem("selectedCitizen", JSON.stringify(player));
+  };
 
   
 
@@ -64,11 +82,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                     {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => {
                       const charinfo = JSON.parse(player.charinfo);
                       return (
-                        <div key={index} onClick={() => {
-                          const charinfo = JSON.parse(player.charinfo);
-                          setSelectedCitizen(player);
-                          setSelectedCharinfo(charinfo);
-                        }}>
+                        <div key={index} onClick={() => handleSelectCitizen(player)}>
                           <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
                             {charinfo.firstname} {charinfo.lastname}
                           </h3>
