@@ -11,7 +11,7 @@ interface SearchSectionProps {
 
 const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedCitizen, setSelectedCitizen] = useState<any>(null)
+  const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
 
   
 
@@ -61,7 +61,11 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                     {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => {
                       const charinfo = JSON.parse(player.charinfo);
                       return (
-                        <div key={index} onClick={() => setSelectedCitizen(player)}>
+                        <div key={index} onClick={() => {
+                          const charinfo = JSON.parse(player.charinfo);
+                          player.charinfo = charinfo
+                          setSelectedCitizen(player);
+                        }}>
                           <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
                             {charinfo.firstname} {charinfo.lastname}
                           </h3>
