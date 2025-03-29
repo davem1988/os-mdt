@@ -6,13 +6,12 @@ const Navbar: React.FC = () => {
 
   // A function to handle item selection
   const handleSelection = (index: number) => {
-    console.log(index)
     setSelectedItem(index);
   };
 
   return (
     <nav className="flex flex-col items-center px-4 pt-5 pb-11 max-w-full text-sm text-center text-white rounded-xl bg-zinc-300 bg-opacity-10 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] w-[114px] backdrop-blur-sm" aria-label="Main Navigation">
-      <div className={`flex flex-col px-4 py-0.5 transition-all duration-300 ${selectedItem === 0 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : ""}`}
+      <div className={`flex flex-col px-4 py-0.5 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-zinc-200/10 cursor-pointer ${selectedItem === 0 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"}`}
         onClick={() => handleSelection(0)}
       >
         <img
@@ -25,8 +24,8 @@ const Navbar: React.FC = () => {
 
       {/* Records item */}
       <div
-        className={`flex flex-col items-center mt-6 transition-all duration-300 ${
-          selectedItem === 1 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "bg-transparent shadow-none"
+        className={`flex flex-col items-center mt-6 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)]  hover:bg-zinc-200/10 cursor-pointer ${
+          selectedItem === 1 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"
         }`}
         onClick={() => handleSelection(1)}
       >
@@ -39,7 +38,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Divider item */}
-      <div className={`flex flex-col items-center mt-3 transition-all duration-300 ${selectedItem === 2 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : ""}`}
+      <div className={`flex flex-col items-center mt-3 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-zinc-200/10 cursor-pointer ${selectedItem === 2 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"}`}
         onClick={() => handleSelection(2)}
       >
         <img
@@ -52,8 +51,8 @@ const Navbar: React.FC = () => {
 
       {/* Dispatch item */}
       <div
-        className={`flex flex-col items-center mt-7 pt-2 transition-all duration-300 ${
-          selectedItem === 3 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : ""
+        className={`flex flex-col items-center mt-7 pt-2 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-zinc-200/10 cursor-pointer ${
+          selectedItem === 3 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"
         }`}
         onClick={() => handleSelection(3)}
       >
@@ -67,8 +66,8 @@ const Navbar: React.FC = () => {
 
       {/* Staff item */}
       <div
-        className={`flex flex-col items-center mt-5 pt-2 transition-all duration-300 ${
-          selectedItem === 4 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "bg-transparent shadow-none"
+        className={`flex flex-col items-center mt-5 pt-2 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-zinc-200/10 cursor-pointer ${
+          selectedItem === 4 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"
         }`}
         onClick={() => handleSelection(4)}
       >
@@ -82,8 +81,8 @@ const Navbar: React.FC = () => {
 
       {/* Command Staff item */}
       <div
-        className={`flex flex-col items-center mt-5 transition-all duration-300 ${
-          selectedItem === 5 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "bg-transparent shadow-none"
+        className={`flex flex-col items-center mt-5 transition-all duration-300 hover:shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-zinc-200/10 cursor-pointer ${
+          selectedItem === 5 ? "self-stretch whitespace-nowrap rounded-md shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-zinc-200/10 " : "self-stretch whitespace-nowrap rounded-md"
         }`}
         onClick={() => handleSelection(5)}
       >

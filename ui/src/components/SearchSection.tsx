@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { CitizenInfo } from "@/lib/types";
+import { CitizenInfo } from "@/lib";
+import { formatDateToFrench } from "@/lib";
+import Image from "next/image";
 
 interface SearchSectionProps {
   initialCitizen?: CitizenInfo;
@@ -56,7 +58,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
             <div className="flex gap-1 px-1.5 py-2 mt-6 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
               <div className="flex flex-col self-start mt-3 w-full text-sm text-white">
                 {/* Only render if searchQuery is not empty */}
-                {searchQuery && (
+                {searchQuery ? (
                   <>
                     {/* Display players based on the search query */}
                     {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => {
@@ -81,20 +83,20 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                       </div>
                     ))}
                   </>
-                )}
+                ): (<div className="text-center">Veuillez effectuer une recherche...</div>)}
               </div>
             </div>
           </div>
         </div>
 
         {/* Results column */}
-        <div className="ml-5 w-[56%] max-md:ml-0 max-md:w-full">
+        {selectedCitizen ? (<div className="ml-5 w-[56%] max-md:ml-0 max-md:w-full">
           {/* Render citizen details */}
           <div className="flex flex-col w-full max-md:mt-9">
             <div className="flex gap-4">
               <div className="flex flex-col items-start py-3 pr-28 pl-3 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5">
                 <h3 className="text-sm font-bold text-white">{selectedCitizen ? `${selectedCharinfo.firstname} ${selectedCharinfo.lastname}` : 'No Data'}</h3>
-                <p className="mt-3.5 text-sm text-white">{selectedCitizen ? `Né le ${selectedCharinfo.birthdate}` : 'No Data'}</p>
+                <p className="mt-3.5 text-sm text-white">{selectedCitizen ? `Né le ${formatDateToFrench(selectedCharinfo.birthdate)}` : 'No Data'}</p>
               </div>
               <img
                 src={selectedCitizen && selectedCitizen.photoUrl ? selectedCitizen.photoUrl : 'https://static.vecteezy.com/system/resources/thumbnails/003/780/897/small/silhouette-of-anonymous-man-with-question-mark-in-mugshot-or-police-lineup-background-vector.jpg'}
@@ -135,7 +137,11 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
               Modifier casier
             </button>
           </div>
-        </div>
+        </div>) : (
+          <div className="flex flex-col gap-10 justify-center items-center w-[50%] h-[500px]">
+            <h3>Selectionnez un citoyen </h3>
+            <Image src="/user.png" width={75} height={75} alt="no user"/>
+          </div>)}
       </div>
     </section>
   );
