@@ -49,10 +49,19 @@ export default function Home() {
   }, []); // This will always be called the same way
 
   useEffect(() => {
-    console.log(players);
-    const policeOnDuty = (players || []).filter(
-      (player) => player.job?.name === "police" && player.job?.onduty === true
-    );
+    const policeOnDuty = (players || []).filter((player) => {
+      if (!player.job) return false; // Ensure job exists
+  
+      let job;
+      try {
+        job = JSON.parse(player.job); // Parse job JSON string
+      } catch (error) {
+        console.error("Error parsing job JSON:", error);
+        return false;
+      }
+  
+      return job.name === "police" && job.onduty === true;
+    });
   
     setDutyOfficers(policeOnDuty);
   }, [players]);
