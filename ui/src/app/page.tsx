@@ -46,7 +46,7 @@ export default function Home() {
     getPlayerData();
     getAllPlayers();
     getAllVehicles();
-  }, []); // This will always be called the same way
+  }, [display]); // This will always be called the same way
 
   useEffect(() => {
     console.log(players)

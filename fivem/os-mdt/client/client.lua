@@ -4,6 +4,7 @@ QBCore = exports['qb-core']:GetCoreObject()
 AddEventHandler("onResourceStop", function(resource)
     if resource == cfg.resourceName then
         Utils.displayNUI(false)
+        Utils.resetLocalStorage()
         SetNuiFocus(false, false)
     end
 end)
