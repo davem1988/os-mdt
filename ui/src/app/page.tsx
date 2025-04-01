@@ -96,6 +96,7 @@ export default function Home() {
     if (!(updatedOfficers.length > 0)) return;
     console.log("Skipped the updated officers if check")
     const policeOnDuty = updatedOfficers.filter((player) => {
+      console.log("Updated officer: ", player)
       if (!player.PlayerData.job) return false; // Ensure job exists
   
       let job;
