@@ -20,7 +20,7 @@ const useNuiListener = () => {
             if (event.data?.type === "app/setDisplay") {
                 dispatch(setDisplay(event.data.data)); // Use `data` field sent from Lua
             } else if (event.data?.type === "app/updateOfficers") {
-                console.log("Officers Update Event: ",event.data)
+                console.log("Officers Update Event: ", event.data)
                 dispatch(updateOfficers(event.data.data));
             }
         };

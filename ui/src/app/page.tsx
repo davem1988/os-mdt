@@ -89,6 +89,7 @@ export default function Home() {
   }, [players]);
 
   useEffect(() => {
+    console.log('Officers changed')
     if(updatedOfficers.length > 0) {
       setOfficers(updatedOfficers);
     }
