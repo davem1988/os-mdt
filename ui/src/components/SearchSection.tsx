@@ -138,7 +138,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
             {/* Render infractions */}
             <h3 className="self-start mt-4 text-sm text-white">Infractions</h3>
-            <div className="flex gap-2 px-2.5 pt-3.5 pb-9 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
+            <div className="flex gap-2 px-2.5 pt-3.5 pb-5 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
               <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
                 {playerInfractions.length > 0 ? (playerInfractions.map((infraction, index) => (
                   <div key={`infraction-${index}`} className="relative flex gap-5 justify-between px-2.5 py-5 rounded-md text-white mb-2">
@@ -150,9 +150,13 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
               </div>
             </div>
 
+            <button className="self-center px-3.5 py-1 mt-6 w-[40%] text-sm text-center text-white bg-yellow-600 rounded-md hover:bg-yellow-700 transition-all duration-300">
+              Nouvelle Infraction
+            </button>
+
             {/* Render vehicles */}
             <h3 className="self-start mt-4 text-sm text-white">Véhicules</h3>
-            <div className="flex gap-2 px-2.5 pt-3.5 pb-9 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
+            <div className="flex gap-2 px-2.5 pt-3.5 pb-5 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
               <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
                 {playerVehicles.length > 0 ? (playerVehicles.map((vehicle, index) => (
                   <div key={`vehicle-${index}`} className="relative flex gap-5 justify-between px-2.5 py-5 rounded-md text-white mb-2">
