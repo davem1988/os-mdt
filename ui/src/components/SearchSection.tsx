@@ -146,7 +146,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                     <div>{infraction.type}</div>
                     <button className="font-bold text-center cursor-pointer z-20">Consulter</button>
                   </div>
-                ))): (<>Aucune infraction au dossier.</>)}
+                ))): (<div className="flex items-center justify-center">Aucune infraction au dossier</div>)}
               </div>
             </div>
 
@@ -160,7 +160,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                     <div>{vehicle.name}</div>
                     <button className="font-bold text-center cursor-pointer z-20">Consulter</button>
                   </div>
-                ))): (<>Aucun véhicle enregistré.</>)}
+                ))): (<div className="flex items-center justify-center">Aucun véhicle enregistré</div>)}
               </div>
             </div>
 
