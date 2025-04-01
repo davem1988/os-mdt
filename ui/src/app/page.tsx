@@ -97,11 +97,11 @@ export default function Home() {
     console.log("Skipped the updated officers if check")
     const policeOnDuty = updatedOfficers.filter((player) => {
       console.log("Updated officer: ", player)
-      if (!player.PlayerData.job) return false; // Ensure job exists
+      if (!player.job) return false; // Ensure job exists
   
       let job;
       try {
-        job = player.PlayerData.job; // Parse job JSON string
+        job = player.job; // Parse job JSON string
       } catch (error) {
         console.error("Error parsing job JSON:", error);
         return false;
