@@ -93,6 +93,7 @@ export default function Home() {
   useEffect(() => {
     console.log('Officers changed')
     if(updatedOfficers.length > 0) {
+      console.log(updatedOfficers)
       setOfficers(updatedOfficers);
     }
   }, [updatedOfficers]);
