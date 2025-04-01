@@ -93,8 +93,8 @@ export default function Home() {
 
   useEffect(() => {
     console.log("Updated Officers: ", updatedOfficers)
-    if(updatedOfficers.length > 0) {
-      const policeOnDuty = (updatedOfficers || []).filter((player) => {
+    if(updatedOfficers.length >= 1) {
+      const policeOnDuty = updatedOfficers.filter((player) => {
         if (!player.PlayerData.job) return false; // Ensure job exists
     
         let job;
