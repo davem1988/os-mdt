@@ -72,6 +72,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (!(officers.length > 0)) return;
     const policeOnDuty = (officers || []).filter((player) => {
       
       if (!player.PlayerData.job) return false; // Ensure job exists
