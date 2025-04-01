@@ -66,7 +66,7 @@ export default function Home() {
   
       let job;
       try {
-        job = JSON.parse(player.PlayerData.job); // Parse job JSON string
+        job = player.PlayerData.job; // Parse job JSON string
       } catch (error) {
         console.error("Error parsing job JSON:", error);
         return false;
