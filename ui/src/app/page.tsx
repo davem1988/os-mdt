@@ -88,7 +88,7 @@ export default function Home() {
     });
   
     setDutyOfficers(policeOnDuty);
-  }, [players]);
+  }, [players, updatedOfficers]);
 
   useEffect(() => {
     console.log('Officers changed')
