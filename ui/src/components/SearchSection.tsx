@@ -84,7 +84,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                       return selectedCitizen && charinfo.firstname == selectedCharinfo.firstname && charinfo.lastname == selectedCharinfo.lastname ? (
                         <div 
                           key={index} 
-                          className="rounded-xl bg-zinc-300 bg-opacity-20"
+                          className="rounded-xl bg-zinc-300 bg-opacity-20 mt-2"
                           onClick={() => handleSelectCitizen(player)}
                         >
                           <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
