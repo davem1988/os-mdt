@@ -42,7 +42,6 @@ export default function Home() {
 
   const getAllOfficers = () => {
     nuiCallback("/getAllOfficers", {}, (result: any) => {
-      console.log("Officers Result", result)
       setOfficers(result || []); // Ensure it's always an array
     });
   };
@@ -91,7 +90,6 @@ export default function Home() {
   }, [players]);
 
   useEffect(() => {
-    console.log('Officers changed')
     if(updatedOfficers.length > 0) {
       console.log(updatedOfficers)
       const policeOnDuty = (updatedOfficers || []).filter((player) => {
