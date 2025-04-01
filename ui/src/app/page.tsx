@@ -16,6 +16,7 @@ export default function Home() {
   const display = useSelector((state: RootState) => state.app.display);
   const [playerData, setPlayerData] = useState(null);
   const [players, setPlayers] = useState<any[]>([]);
+  const [officers, setOfficers] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState(null);
   const [dutyOfficers, setDutyOfficers] = useState<any[]>([]);
   
@@ -36,6 +37,12 @@ export default function Home() {
     });
   };
 
+  const getAllOfficers = () => {
+    nuiCallback("/getAllOfficers", {}, (result: any) => {
+      setOfficers(result || []); // Ensure it's always an array
+    });
+  };
+
   const getAllVehicles = () => {
     nuiCallback("/getAllVehicles", {}, (result: any) => {
       setVehicles(result);
@@ -46,10 +53,11 @@ export default function Home() {
     getPlayerData();
     getAllPlayers();
     getAllVehicles();
+    getAllOfficers();
   
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        getAllPlayers();
+        getAllOfficers();
       }
     };
   
@@ -61,13 +69,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const policeOnDuty = (players || []).filter((player) => {
+    const policeOnDuty = (officers || []).filter((player) => {
       if (!player.PlayerData.job) return false; // Ensure job exists
   
       let job;
       try {
         job = player.PlayerData.job; // Parse job JSON string
-        console.log("Extracted Player Job:", job);
       } catch (error) {
         console.error("Error parsing job JSON:", error);
         return false;
@@ -100,7 +107,7 @@ export default function Home() {
                 <h2 className="self-start mt-[-23px] text-start max-md:mt-[-23px]">
                   En service
                 </h2>
-                <DutyRoster officers={dutyOfficers} />
+                <DutyRoster players={dutyOfficers} />
                 <AlertsSection alerts={recentAlerts} />
               </div>
             </div>
