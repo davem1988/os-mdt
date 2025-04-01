@@ -20,6 +20,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
     const savedCitizen = localStorage.getItem("selectedCitizen");
     if (savedCitizen) {
       const parsedCitizen = JSON.parse(savedCitizen);
+      console.log(parsedCitizen)
       setSelectedCitizen(parsedCitizen);
       setSelectedCharinfo(JSON.parse(parsedCitizen.charinfo));
     }
