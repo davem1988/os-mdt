@@ -124,8 +124,8 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
         {selectedCitizen ? (<div className="ml-5 w-[56%] max-md:ml-0 max-md:w-full">
           {/* Render citizen details */}
           <div className="flex flex-col w-full max-md:mt-9">
-            <div className="flex gap-4 w-[110%]">
-              <div className="flex flex-col items-start py-3 pr-28 pl-3 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5">
+            <div className="flex gap-4 w-[100%]">
+              <div className="w-[75%] flex flex-col items-start py-3 pr-28 pl-3 rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-md:pr-5">
                 <h3 className="text-sm font-bold text-white">{selectedCitizen ? `${selectedCharinfo.firstname} ${selectedCharinfo.lastname}` : 'No Data'}</h3>
                 <p className="mt-3.5 text-sm text-white">{selectedCitizen ? `Né le ${formatDateToFrench(selectedCharinfo.birthdate)}` : 'No Data'}</p>
               </div>
