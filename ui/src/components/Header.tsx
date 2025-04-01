@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
                 onClick={handleClose}
               />
             </div>
-            <div className="flex gap-3 items-start self-start ml-6 max-md:ml-2.5">
+            <div className="flex gap-3 items-start self-start ml-2 max-md:ml-2.5">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/3cb78e2fba4cf99f1cca33c873519c172d2a65e6?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5"
                 className="object-contain shrink-0 aspect-square w-[43px]"
