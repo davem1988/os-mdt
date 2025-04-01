@@ -72,9 +72,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!(officers.length > 0)) return;
     const policeOnDuty = (officers || []).filter((player) => {
-      
       if (!player.PlayerData.job) return false; // Ensure job exists
   
       let job;
@@ -92,25 +90,24 @@ export default function Home() {
   }, [players]);
 
   useEffect(() => {
-    console.log("Updated Officers: ", updatedOfficers)
-    if (!(updatedOfficers.length > 0)) return;
-    console.log("Skipped the updated officers if check")
-    const policeOnDuty = updatedOfficers.filter((player) => {
-      console.log("Updated officer: ", player)
-      if (!player.job) return false; // Ensure job exists
-  
-      let job;
-      try {
-        job = player.job; // Parse job JSON string
-      } catch (error) {
-        console.error("Error parsing job JSON:", error);
-        return false;
-      }
-  
-      return job.name === "police" && job.onduty === true;
-    });
-    setDutyOfficers(policeOnDuty);
- 
+    if(updatedOfficers && updatedOfficers.length > 0) {
+      console.log(updatedOfficers)
+      const policeOnDuty = (updatedOfficers || []).filter((player) => {
+        if (!player.PlayerData.job) return false; // Ensure job exists
+    
+        let job;
+        try {
+          job = player.PlayerData.job; // Parse job JSON string
+        } catch (error) {
+          console.error("Error parsing job JSON:", error);
+          return false;
+        }
+    
+        return job.name === "police" && job.onduty === true;
+      });
+
+      setDutyOfficers(policeOnDuty);
+    }
   }, [updatedOfficers]);
 
   if (!display && !searchParams.get("preview")) return null;
