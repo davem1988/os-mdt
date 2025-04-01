@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
         {/* Right column with date and map */}
         <div className="ml-5 w-2/5 max-md:ml-0 max-md:w-full">
           <div className="flex relative flex-col mt-2.5 w-full text-center text-white max-md:mt-10">
-            <div className="flex gap-5 justify-between text-xl">
+            <div className="flex gap-5 justify-between text-xl text-center">
               <time className="my-auto" dateTime="2025-03-27T02:22:00">
                 {currentDateTime}
               </time>
@@ -59,18 +59,6 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
                 alt="Close icon"
                 onClick={handleClose}
               />
-            </div>
-            <div className="flex gap-3 items-start self-start ml-2 max-md:ml-2.5">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3cb78e2fba4cf99f1cca33c873519c172d2a65e6?placeholderIfAbsent=true&apiKey=872927278c6d40e4bb42cad9868a24a5"
-                className="object-contain shrink-0 aspect-square w-[43px]"
-                alt="Map icon"
-              />
-              <div className="flex flex-col mt-3.5">
-                <button className="text-base" aria-label="View map">
-                  Consulter la carte
-                </button>
-              </div>
             </div>
           </div>
         </div>
