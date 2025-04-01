@@ -19,6 +19,7 @@ export default function Home() {
   const [officers, setOfficers] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState(null);
   const [dutyOfficers, setDutyOfficers] = useState<any[]>([]);
+  const updatedOfficers = useSelector((state: RootState) => state.app.officers);
   
 
   const recentAlerts: Alert[] = [
@@ -86,6 +87,12 @@ export default function Home() {
   
     setDutyOfficers(policeOnDuty);
   }, [players]);
+
+  useEffect(() => {
+    if(updatedOfficers.length > 0) {
+      setOfficers(updatedOfficers);
+    }
+  }, [updatedOfficers]);
 
   if (!display && !searchParams.get("preview")) return null;
 
