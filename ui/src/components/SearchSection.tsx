@@ -81,8 +81,16 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                     {/* Display players based on the search query */}
                     {filteredPlayers && filteredPlayers.length > 0 && filteredPlayers.map((player: any, index: any) => {
                       const charinfo = JSON.parse(player.charinfo);
-                      return (
-                        <div className="rounded-xl hover:bg-zinc-300 bg-opacity-10" key={index} onClick={() => handleSelectCitizen(player)}>
+                      return selectedCitizen ? (
+                        <h3 key={index} className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
+                          {charinfo.firstname} {charinfo.lastname}
+                        </h3>
+                      ) : (
+                        <div 
+                          key={index} 
+                          className="rounded-xl hover:bg-zinc-300 hover:bg-opacity-10" 
+                          onClick={() => handleSelectCitizen(player)}
+                        >
                           <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
                             {charinfo.firstname} {charinfo.lastname}
                           </h3>
