@@ -2,7 +2,7 @@ import React from "react";
 import { DutyOfficer } from "@/lib/types";
 
 interface DutyRosterProps {
-  officers: DutyOfficer[];
+  officers: any[];
 }
 
 const DutyRoster: React.FC<DutyRosterProps> = ({ officers }) => {
@@ -19,10 +19,10 @@ const DutyRoster: React.FC<DutyRosterProps> = ({ officers }) => {
           >
             <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%]"></div>
             <div className="flex gap-3">
-              <div className="grow font-bold">{officer.rank}</div>
-              <div>{officer.name}</div>
+              <div className="grow font-bold">{officer.PlayerData.job.grade.name}</div>
+              <div>{`${officer.PlayerData.charinfo.firstname} ${officer.PlayerData.charinfo.lastname}`}</div>
             </div>
-            <div>{officer.unit}</div>
+            <div>{officer.PlayerData.metadata.callsign}</div>
           </div>
         ))}
       </div>
