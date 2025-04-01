@@ -32,8 +32,7 @@ export default function Home() {
 
   const getAllPlayers = () => {
     nuiCallback("/getAllPlayers", {}, (result: any) => {
-      console.log(result);
-      setPlayers(result.PlayerData || []); // Ensure it's always an array
+      setPlayers(result || []); // Ensure it's always an array
     });
   };
 
@@ -63,11 +62,11 @@ export default function Home() {
 
   useEffect(() => {
     const policeOnDuty = (players || []).filter((player) => {
-      if (!player.job) return false; // Ensure job exists
+      if (!player.PlayerData.job) return false; // Ensure job exists
   
       let job;
       try {
-        job = JSON.parse(player.job); // Parse job JSON string
+        job = JSON.parse(player.PlayerData.job); // Parse job JSON string
       } catch (error) {
         console.error("Error parsing job JSON:", error);
         return false;
