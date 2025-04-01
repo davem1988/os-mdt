@@ -39,6 +39,7 @@ export default function Home() {
 
   const getAllOfficers = () => {
     nuiCallback("/getAllOfficers", {}, (result: any) => {
+      console.log(result)
       setOfficers(result || []); // Ensure it's always an array
     });
   };
