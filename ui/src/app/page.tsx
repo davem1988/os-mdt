@@ -94,6 +94,7 @@ export default function Home() {
   useEffect(() => {
     console.log("Updated Officers: ", updatedOfficers)
     if(updatedOfficers.length >= 1) {
+      console.log("Skipped the updated officers if check")
       const policeOnDuty = updatedOfficers.filter((player) => {
         if (!player.PlayerData.job) return false; // Ensure job exists
     
