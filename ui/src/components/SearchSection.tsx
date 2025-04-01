@@ -15,6 +15,8 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
   const [selectedCharinfo, setSelectedCharinfo] = useState<any>(null);
+  const [playerInfractions, setPlayerInfractions] = useState<any[]>([]);
+  const [playerVehicles, setPlayerVehicles] = useState<any[]>([]);
 
   useEffect(() => {
     const savedCitizen = localStorage.getItem("selectedCitizen");
@@ -138,13 +140,13 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
             <h3 className="self-start mt-4 text-sm text-white">Infractions</h3>
             <div className="flex gap-2 px-2.5 pt-3.5 pb-9 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
               <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
-                {/* {citizenData.infractions.map((infraction, index) => (
+                {playerInfractions.length > 0 ? (playerInfractions.map((infraction, index) => (
                   <div key={`infraction-${index}`} className="relative flex gap-5 justify-between px-2.5 py-5 rounded-md text-white mb-2">
                     <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%]"></div>
                     <div>{infraction.type}</div>
                     <button className="font-bold text-center cursor-pointer z-20">Consulter</button>
                   </div>
-                ))} */}
+                ))): (<>Aucune infraction au dossier.</>)}
               </div>
             </div>
 
@@ -152,13 +154,13 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
             <h3 className="self-start mt-4 text-sm text-white">Véhicules</h3>
             <div className="flex gap-2 px-2.5 pt-3.5 pb-9 text-sm text-white rounded-md bg-purple-950 bg-opacity-30 shadow-[0px_4px_4px_rgba(0,0,0,0.25)] max-h-[170px]">
               <div className="grow shrink-0 w-fit pr-2 min-h-[140px] overflow-y-auto scroll-smooth">
-                {/* {citizenData.vehicles.map((vehicle, index) => (
+                {playerVehicles.length > 0 ? (playerVehicles.map((vehicle, index) => (
                   <div key={`vehicle-${index}`} className="relative flex gap-5 justify-between px-2.5 py-5 rounded-md text-white mb-2">
                     <div className="absolute inset-0 rounded-md bg-gradient-to-r from-[#787878] to-[#DEDEDE] opacity-[30%]"></div>
                     <div>{vehicle.name}</div>
                     <button className="font-bold text-center cursor-pointer z-20">Consulter</button>
                   </div>
-                ))} */}
+                ))): (<>Aucun véhicle enregistré.</>)}
               </div>
             </div>
 
