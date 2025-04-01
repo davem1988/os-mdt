@@ -88,13 +88,27 @@ export default function Home() {
     });
   
     setDutyOfficers(policeOnDuty);
-  }, [players, updatedOfficers]);
+  }, [players]);
 
   useEffect(() => {
     console.log('Officers changed')
     if(updatedOfficers.length > 0) {
       console.log(updatedOfficers)
-      setOfficers(updatedOfficers);
+      const policeOnDuty = (updatedOfficers || []).filter((player) => {
+        if (!player.PlayerData.job) return false; // Ensure job exists
+    
+        let job;
+        try {
+          job = player.PlayerData.job; // Parse job JSON string
+        } catch (error) {
+          console.error("Error parsing job JSON:", error);
+          return false;
+        }
+    
+        return job.name === "police" && job.onduty === true;
+      });
+
+      setDutyOfficers(policeOnDuty);
     }
   }, [updatedOfficers]);
 
