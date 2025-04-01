@@ -10,8 +10,10 @@ import SearchSection from "@/components/SearchSection"
 import DutyRoster from "@/components/DutyRoster";
 import AlertsSection from "@/components/AlertSection";
 import { DutyOfficer, Alert, OfficerInfo } from "@/lib/types";
+import useNuiListener from "@/lib/utils";
 
 export default function Home() {
+  useNuiListener();
   const searchParams = useSearchParams();
   const display = useSelector((state: RootState) => state.app.display);
   const [playerData, setPlayerData] = useState(null);

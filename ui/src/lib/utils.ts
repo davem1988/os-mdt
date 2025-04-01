@@ -18,6 +18,7 @@ const useNuiListener = () => {
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
             if (event.data?.type === "app/setDisplay") {
+                console.log("Set Display Event: ", event.data)
                 dispatch(setDisplay(event.data.data)); // Use `data` field sent from Lua
             } else if (event.data?.type === "app/updateOfficers") {
                 console.log("Officers Update Event: ", event.data)
