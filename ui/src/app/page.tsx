@@ -32,6 +32,7 @@ export default function Home() {
 
   const getAllPlayers = () => {
     nuiCallback("/getAllPlayers", {}, (result: any) => {
+      console.log(result[0].PlayerData.job)
       setPlayers(result || []); // Ensure it's always an array
     });
   };
