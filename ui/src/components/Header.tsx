@@ -49,8 +49,8 @@ const Header: React.FC<HeaderProps> = ({ officerInfo, currentDateTime }) => {
         {/* Right column with date and map */}
         <div className="ml-5 w-2/5 max-md:ml-0 max-md:w-full">
           <div className="flex relative flex-col mt-2.5 w-full text-center text-white max-md:mt-10">
-            <div className="flex gap-5 justify-between text-xl w-[75%] text-center">
-              <time className="my-auto" dateTime="2025-03-27T02:22:00">
+            <div className="flex gap-5 justify-between text-xl">
+              <time className="my-auto w-[75%] text-center" dateTime="2025-03-27T02:22:00">
                 {currentDateTime}
               </time>
               <img
