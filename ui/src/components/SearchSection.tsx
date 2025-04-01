@@ -83,7 +83,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
                       const charinfo = JSON.parse(player.charinfo);
                       return (
                         <div key={index} onClick={() => handleSelectCitizen(player)}>
-                          <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer">
+                          <h3 className="self-start ml-2.5 pt-1 pb-2.5 cursor-pointer rounded-xl hover:bg-zinc-300 bg-opacity-10">
                             {charinfo.firstname} {charinfo.lastname}
                           </h3>
                         </div>
