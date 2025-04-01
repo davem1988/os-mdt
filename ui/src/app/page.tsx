@@ -46,10 +46,21 @@ export default function Home() {
     getPlayerData();
     getAllPlayers();
     getAllVehicles();
-  }, [display]); // This will always be called the same way
+  
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        getAllPlayers();
+      }
+    };
+  
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   useEffect(() => {
-    console.log(players)
     const policeOnDuty = (players || []).filter((player) => {
       if (!player.job) return false; // Ensure job exists
   
