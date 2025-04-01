@@ -32,7 +32,6 @@ export default function Home() {
 
   const getAllPlayers = () => {
     nuiCallback("/getAllPlayers", {}, (result: any) => {
-      console.log(result[0].PlayerData.job)
       setPlayers(result || []); // Ensure it's always an array
     });
   };
@@ -68,6 +67,7 @@ export default function Home() {
       let job;
       try {
         job = player.PlayerData.job; // Parse job JSON string
+        console.log("Extracted Player Job" + job);
       } catch (error) {
         console.error("Error parsing job JSON:", error);
         return false;
