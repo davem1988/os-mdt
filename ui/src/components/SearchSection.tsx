@@ -43,6 +43,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
 
   // Filter players and vehicles based on search query
   const filteredPlayers = useMemo(() => {
+    console.log("Players for search: ", players)
     return players?.filter((player: any) => {
       // Parse the charinfo string into an object
       const charinfo = JSON.parse(player.charinfo);
