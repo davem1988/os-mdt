@@ -65,7 +65,7 @@ const NewEntryModal: React.FC = () => {
             </div>
             <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col w-full max-md:mt-10">
-                <button className="self-end" aria-label="Close modal" onClick={() => closeModal}>
+                <button className="self-end" aria-label="Close modal" onClick={closeModal}>
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets/872927278c6d40e4bb42cad9868a24a5/77492e6a47f180eb332d1831a823702616c51cb2?placeholderIfAbsent=true"
                     alt="Close"
