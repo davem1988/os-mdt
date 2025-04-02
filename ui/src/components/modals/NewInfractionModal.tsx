@@ -17,7 +17,7 @@ const NewEntryModal: React.FC = () => {
 
   return (
     <section
-      className="rounded-none max-w-[757px]"
+      className="absolute rounded-none max-w-[757px]"
       role="dialog"
       aria-labelledby="modal-title"
     >
