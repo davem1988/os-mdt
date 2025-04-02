@@ -11,10 +11,13 @@ import DutyRoster from "@/components/DutyRoster";
 import AlertsSection from "@/components/AlertSection";
 import { DutyOfficer, Alert, OfficerInfo } from "@/lib/types";
 import useNuiListener from "@/lib/utils";
+import NewInfractionModal from "@/components/modals/NewInfractionModal";
+import { useModal } from "@/state/ModalContext";
 
 export default function Home() {
   useNuiListener();
   const searchParams = useSearchParams();
+  const { isOpen, type, openModal, closeModal } = useModal();
   const display = useSelector((state: RootState) => state.app.display);
   const [playerData, setPlayerData] = useState(null);
   const [players, setPlayers] = useState<any[]>([]);
@@ -114,6 +117,7 @@ export default function Home() {
   return (
     <main className="flex items-center justify-center min-h-screen w-screen z-50 mt-10">
       <AppLayout>
+        {isOpen && type == "newInfraction" && <NewInfractionModal/>}
         <div className="flex-auto max-md:max-w-full">
           <div className="flex gap-2 max-md:flex-col">
             {/* Search and results section */}

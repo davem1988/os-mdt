@@ -1,4 +1,5 @@
 import Providers from "@/components/providers";
+import { ModalProvider } from "@/state/ModalContext";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -28,7 +29,9 @@ export default function RootLayout({
 			<body className={`${inter.className} p-0 m-0 overflow-hidden`}>
 				<Providers>
 				<Suspense fallback={<HomeFallback />}>
-					{children}
+					<ModalProvider>
+						{children}
+					</ModalProvider>
         		</Suspense>
 				</Providers>
 			</body>

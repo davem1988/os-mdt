@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { CitizenInfo } from "@/lib";
 import { formatDateToFrench } from "@/lib";
 import Image from "next/image";
+import { useModal } from "@/state/ModalContext";
 
 interface SearchSectionProps {
   initialCitizen?: CitizenInfo;
@@ -12,6 +13,7 @@ interface SearchSectionProps {
 }
 
 const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles }) => {
+  const { isOpen, type, openModal, closeModal } = useModal();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
   const [selectedCharinfo, setSelectedCharinfo] = useState<any>(null);
@@ -150,7 +152,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
               </div>
             </div>
 
-            <button className="self-center px-3.5 py-1 mt-6 w-[40%] text-sm text-center text-white bg-yellow-600 rounded-md hover:bg-yellow-700 transition-all duration-300">
+            <button onClick={() => openModal("newInfraction")}className="self-center px-3.5 py-1 mt-6 w-[40%] text-sm text-center text-white bg-yellow-600 rounded-md hover:bg-yellow-700 transition-all duration-300">
               Nouvelle Infraction
             </button>
 
