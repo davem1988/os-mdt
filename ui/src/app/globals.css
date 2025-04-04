@@ -4,6 +4,7 @@
 
 :root {
 	background: transparent !important;
+	user-select: none;
 }
 
 html, body {
@@ -35,4 +36,5 @@ main {
   
 ::-webkit-scrollbar-track {
 	background: transparent; /* Transparent track */
+	margin: 5px;
 }

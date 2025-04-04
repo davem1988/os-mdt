@@ -3,19 +3,58 @@ import * as React from "react";
 import { useState } from "react";
 import FileUploadPreview from "../FileUploadPreview";
 import { useModal } from "@/state/ModalContext";
+import InfractionsBox from "../InfractionsBox";
+import OfficersBox from "../OfficersBox";
+import { nuiCallback } from "@/lib/nuiCallback";
 
-const NewEntryModal: React.FC = () => {
+const NewInfractionModal = (citizen: any) => {
   const { isOpen, type, openModal, closeModal } = useModal();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [files, setFiles] = useState<string[]>([
-    "photo_coffre.png",
-    "photo_coffre.png",
-  ]);
+  const [files, setFiles] = useState<string[]>([]);
+  const [finesAmount, setFinesAmount] = useState<number>(0);
+  const [jailTime, setJailTime] = useState<number>(0);
+  const [officers, setOfficers] = useState<any[]>([]);
+  const [infractions, setInfractions] = useState<any[]>([])
+
+  const handleInfractionsChanges = (amount: number, jail: number, allInfractions: any) => {
+    setFinesAmount(amount);
+    setJailTime(jail);
+    setInfractions(allInfractions)
+  }
+
+  const handleOfficersChanges = (allOfficers: any) => {
+    setOfficers(allOfficers);
+  }
 
   const handleAddFile = (newFile: string) => {
     setFiles([...files, newFile]);
   };
+
+  const handleRemoveFile = (newFiles: any[]) => {
+    setFiles(newFiles);
+  };
+
+  const handleSubmit = () => {
+
+    console.log(citizen)
+    const dataToSend = {
+      citizen: citizen,
+      title: title,
+      description: description,
+      files: files,
+      finesAmount: finesAmount,
+      jailTime: jailTime,
+      officers: officers,
+      infractions: infractions
+    }
+
+    console.log(dataToSend)
+
+    nuiCallback("/createNewInfraction", {dataToSend}, (result: any) => {
+      console.log(result)
+    });
+  }
 
   return (
     <section
@@ -30,7 +69,7 @@ const NewEntryModal: React.FC = () => {
               <div className="flex flex-col grow items-start text-white max-md:mt-10">
                 <h2
                   id="modal-title"
-                  className="text-base font-semibold max-md:ml-2.5"
+                  className="text-base font-semibold max-md:ml-2.5 ml-2.5"
                 >
                   Nouvelle infraction
                 </h2>
@@ -59,7 +98,7 @@ const NewEntryModal: React.FC = () => {
                     className="self-stretch px-2.5 pt-2 pb-44 text-xs rounded-md bg-stone-900 text-neutral-400 max-md:pr-5 max-md:pb-28 w-full resize-none"
                   />
 
-                  <FileUploadPreview files={files} onAddFile={handleAddFile} />
+                  <FileUploadPreview files={files} onAddFile={handleAddFile} onRemoveFile={handleRemoveFile} />
                 </form>
               </div>
             </div>
@@ -73,17 +112,15 @@ const NewEntryModal: React.FC = () => {
                   />
                 </button>
                 <div className="flex gap-5 justify-between mt-16 max-md:mt-10">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/872927278c6d40e4bb42cad9868a24a5/54cf85ae05a4f47691dbae5257f3cb356e6a26d9?placeholderIfAbsent=true"
-                    alt="Decorative image"
-                    className="object-contain shrink-0 max-w-full rounded-none aspect-[0.51] w-[158px]"
-                  />
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/872927278c6d40e4bb42cad9868a24a5/895718cf358ae3a6446e843a27d85fa6ea1dd0cb?placeholderIfAbsent=true"
-                    alt="Decorative image"
-                    className="object-contain shrink-0 self-start max-w-full rounded-none aspect-[0.61] w-[152px]"
-                  />
+                  <InfractionsBox onDroppedChanges={handleInfractionsChanges}/>
+                  <OfficersBox onDroppedChanges={handleOfficersChanges}/>
                 </div>
+                <div className="w-[170px] h-[150px] mt-2 text-xs flex flex-col">
+                  <p className="mb-2">Amende Max: {`$${finesAmount}`}</p>
+                  <p>Peine Max: {jailTime} Mois (minutes)</p>
+                   
+                </div>
+                
               </div>
             </div>
           </div>
@@ -91,17 +128,18 @@ const NewEntryModal: React.FC = () => {
         <div className="flex flex-wrap gap-5 justify-between items-start mt-5 ml-3.5 w-full text-white whitespace-nowrap max-w-[596px] max-md:max-w-full">
           <p className="self-end mt-6 text-xs">*obligatoire</p>
           <div className="flex gap-5 self-start text-sm text-center">
-            <button
+            {/* <button
               type="button"
               className="px-10 py-2.5 bg-yellow-700 rounded-md max-md:px-5"
               aria-label="Modifier l'infraction"
             >
               Modifier
-            </button>
+            </button> */}
             <button
               type="button"
               className="px-6 py-2 bg-lime-700 rounded-md max-md:px-5"
               aria-label="Sauvegarder l'infraction"
+              onClick={handleSubmit}
             >
               Sauvegarder
             </button>
@@ -112,4 +150,4 @@ const NewEntryModal: React.FC = () => {
   );
 };
 
-export default NewEntryModal;
+export default NewInfractionModal;

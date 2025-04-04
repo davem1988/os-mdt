@@ -5,14 +5,16 @@ import { CitizenInfo } from "@/lib";
 import { formatDateToFrench } from "@/lib";
 import Image from "next/image";
 import { useModal } from "@/state/ModalContext";
+import Data from "../MockingData.json"
 
 interface SearchSectionProps {
   initialCitizen?: CitizenInfo;
   players: any;
   vehicles: any;
+  onSelectCitizen: (citizen: any) => void
 }
 
-const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles }) => {
+const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, vehicles, onSelectCitizen }) => {
   const { isOpen, type, openModal, closeModal } = useModal();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCitizen, setSelectedCitizen] = useState<any>(null);
@@ -24,15 +26,21 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
     const savedCitizen = localStorage.getItem("selectedCitizen");
     if (savedCitizen) {
       const parsedCitizen = JSON.parse(savedCitizen);
-      console.log(parsedCitizen)
+      onSelectCitizen(parsedCitizen)
       setSelectedCitizen(parsedCitizen);
       setSelectedCharinfo(JSON.parse(parsedCitizen.charinfo));
-    }
+    } /* else {
+      const stringData = Data;
+      setSelectedCitizen(stringData.selectedCitizen)
+      onSelectCitizen(stringData.selectedCitizen)
+      setSelectedCharinfo(stringData.selectedCharinfo)
+    } */
   }, []);
 
   const handleSelectCitizen = (player: any) => {
     const charinfo = JSON.parse(player.charinfo);
     setSelectedCitizen(player);
+    onSelectCitizen(player)
     setSelectedCharinfo(charinfo);
 
     // Sauvegarder dans localStorage

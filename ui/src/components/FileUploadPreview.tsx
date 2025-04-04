@@ -4,11 +4,13 @@ import * as React from "react";
 interface FileUploadPreviewProps {
   files: string[];
   onAddFile: (fileName: string) => void;
+  onRemoveFile: (files: any[]) => void;
 }
 
 const FileUploadPreview: React.FC<FileUploadPreviewProps> = ({
   files,
   onAddFile,
+  onRemoveFile,
 }) => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -26,6 +28,13 @@ const FileUploadPreview: React.FC<FileUploadPreviewProps> = ({
       onAddFile(fileList[0].name);
     }
   };
+
+  const handleRemoveFile = (index: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    const newFiles = files.filter((_, fileIdx) => fileIdx !== index);
+    onRemoveFile(newFiles);
+  };
+
 
   return (
     <div className="mt-2.5">
@@ -54,15 +63,25 @@ const FileUploadPreview: React.FC<FileUploadPreviewProps> = ({
       </div>
 
       {files.length > 0 && (
-        <div className="flex gap-5 justify-between items-start px-2 pt-2 pb-5 mt-1.5 max-w-full text-xs whitespace-nowrap rounded-md bg-stone-900 w-[180px]">
-          <ul className="mt-1 w-full">
+        <div className="flex gap-5 justify-between items-start px-2 pt-2 pb-5 mt-1.5 max-w-full text-xs whitespace-nowrap rounded-md bg-stone-900 w-[180px] h-[110px] max-h-[110px] overflow-x-auto">
+          <ul className="w-full">
             {files.map((file, index) => (
-              <li key={index} className={index > 0 ? "mt-2.5" : ""}>
+              <li key={index} className="mt-2.5 bg-[#4444445e] p-1 rounded flex justify-between">
                 {file}
+                <button 
+                  className="self-end" 
+                  aria-label="Close modal" 
+                  onClick={(e) => handleRemoveFile(index, e)}
+                >
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/872927278c6d40e4bb42cad9868a24a5/77492e6a47f180eb332d1831a823702616c51cb2?placeholderIfAbsent=true"
+                    alt="Close"
+                    className="object-contain rounded-full aspect-[1.07] w-[17px]"
+                  />
+                </button>
               </li>
             ))}
           </ul>
-          <div className="flex shrink-0 w-1 rounded-md bg-zinc-400 bg-opacity-30 h-[69px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
         </div>
       )}
     </div>

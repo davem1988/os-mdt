@@ -1,0 +1,10 @@
+{
+    "selectedCitizen": {
+        "name": "David Maynard"
+    },
+    "selectedCharinfo": {
+        "firstname": "David",
+        "lastname": "Maynard",
+        "birthdate": "1988-07-12"
+    }
+}

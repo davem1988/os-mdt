@@ -24,6 +24,7 @@ export default function Home() {
   const [officers, setOfficers] = useState<any[]>([]);
   const [vehicles, setVehicles] = useState(null);
   const [dutyOfficers, setDutyOfficers] = useState<any[]>([]);
+  const [selectedCitizen, setSelectedCitizen] = useState<any>();
   const updatedOfficers = useSelector((state: RootState) => state.app.officers);
   
 
@@ -117,7 +118,7 @@ export default function Home() {
   return (
     <main className={`flex items-center justify-center min-h-screen w-screen z-50 mt-10`}>
       <AppLayout>
-        {isOpen && type == "newInfraction" &&<NewInfractionModal/>}
+        {isOpen && type == "newInfraction" &&<NewInfractionModal citizen={selectedCitizen}/>}
         <div className={`flex-auto max-md:max-w-full ${isOpen ? 'blur-sm' : ''}`}>
           <div className="flex gap-2 max-md:flex-col">
             {/* Search and results section */}
@@ -125,7 +126,7 @@ export default function Home() {
               <h2 className="self-start mt-[-27px] mb-1 text-base text-start max-md:mt-[-25px]">
                 Rechercher un citoyen
               </h2>
-              <SearchSection players={players} vehicles={vehicles} />
+              <SearchSection players={players} vehicles={vehicles} onSelectCitizen={(citizen: any) => setSelectedCitizen(citizen)} />
             </div>
 
             {/* Duty roster and alerts section */}

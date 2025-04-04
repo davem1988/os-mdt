@@ -1,0 +1,31 @@
+{
+    "criminal": [
+        {
+            "name": "Braquage Supperette",
+            "description": "Braquage de Supperette",
+            "amount": 1000,
+            "jailTime": 5
+        },
+        {
+            "name": "Braquage Fleeca",
+            "description": "Braquage de Banque (Fleeca)",
+            "amount": 2000,
+            "jailTime": 15
+        }
+    ],
+    "road": [
+        {
+            "name": "Feu Rouge",
+            "description": "Passage sur un feu rouge",
+            "amount": 500,
+            "jailTime": 0
+        },
+        {
+            "name": "Conduite sans permis",
+            "description": "Conduite d'un vehicule necessitant un permis sans ce dit-permis en sa possession.",
+            "amount": 500,
+            "jailTime": 0
+        }
+    ]
+    
+}
