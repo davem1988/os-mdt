@@ -21,7 +21,7 @@ const DraggableLabel = ({type, infractionType, name, description, amount, jailTi
         amount,
         jailTime
       }
-      e.dataTransfer.setData("text/plain", JSON.stringify(dataToDrag));
+      e.dataTransfer.setData("application/json", JSON.stringify(dataToDrag));
       e.dataTransfer.effectAllowed = "move";
     }
   
@@ -37,7 +37,7 @@ const DraggableLabel = ({type, infractionType, name, description, amount, jailTi
         gradeName,
         callsign,
       }
-      e.dataTransfer.setData("text/plain", JSON.stringify(dataToDrag));
+      e.dataTransfer.setData("application/json", JSON.stringify(dataToDrag));
       e.dataTransfer.effectAllowed = "move";
     }
   
