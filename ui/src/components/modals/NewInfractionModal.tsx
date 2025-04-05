@@ -62,7 +62,7 @@ const NewInfractionModal = (citizen: any, initialOfficers: any[]) => {
 
   return (
     <section
-      className="absolute left-[25%] -top-[10%] rounded-none w-[800px] z-[100]"
+      className="absolute left-[25%] -top-[10%] rounded-none w-[800px] z-[1]"
       role="dialog"
       aria-labelledby="modal-title"
     >
