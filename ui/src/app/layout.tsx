@@ -4,8 +4,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from 'react'
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,13 +28,11 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.className} p-0 m-0 overflow-hidden`}>
 				<Providers>
-				<Suspense fallback={<HomeFallback />}>
-					<ModalProvider>
-						<DndProvider backend={HTML5Backend}>
+					<Suspense fallback={<HomeFallback />}>
+						<ModalProvider>
 							{children}
-						</DndProvider>
-					</ModalProvider>
-        		</Suspense>
+						</ModalProvider>
+        			</Suspense>
 				</Providers>
 			</body>
 		</html>

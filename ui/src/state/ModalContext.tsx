@@ -1,5 +1,5 @@
 "use client";
-
+import * as React from 'react';
 import { createContext, useContext, useState, ReactNode } from "react";
 
 // Define possible modal types
@@ -14,7 +14,7 @@ interface ModalContextType {
 }
 
 // Create the context
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+const ModalContext = React.createContext<ModalContextType | undefined>(undefined);
 
 // Provider Component
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
