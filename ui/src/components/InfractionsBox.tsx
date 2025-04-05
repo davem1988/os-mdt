@@ -62,7 +62,8 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const data = e.dataTransfer.getData("text/plain");
+        console.log("DROPPED");
+        const data = e.dataTransfer.getData("application/json");
         if (data) {
             const droppedInfraction = JSON.parse(data);
             setDroppedInfractions((prev) => [...prev, droppedInfraction])
@@ -82,8 +83,8 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
   return (
     <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3'>
         Infractions
-        <div className='absolute inset-0 bg-gradient-to-l from-orange-400 to-stone-900 rounded-md mask mask-border h-[91.8%] top-5 w-[109%]'></div>
-        <div className='relative w-[110%] h-[92%] p-2 bg-stone-900 rounded-md z-10 flex flex-col items-center pb-2'>
+        {/* <div className='absolute inset-0 bg-gradient-to-l from-orange-400 to-stone-900 rounded-md mask mask-border h-[91.8%] top-5 w-[109%]'></div> */}
+        <div className='relative w-[110%] h-[92%] p-2 bg-stone-900 rounded-md flex flex-col items-center pb-2'>
             <input onChange={(e) => setSearchQuery(e.target.value)} type="text" id='infractionSearch' className='w-[105%] h-4 rounded-sm bg-[rgb(15,15,15)] text-[9px] placeholder:font-thin  pl-2 placeholder:text-[#353535] focus:outline-none text-[#d6d6d6]' placeholder='rechercher infraction'/>
             <div className="bg-[rgb(15,15,15)] w-[105%] h-[76px] mt-[6px] rounded-sm p-1 pb-1 overflow-auto">
                 {searchQuery && searchResult.length > 0 && 

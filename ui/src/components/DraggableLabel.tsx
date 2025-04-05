@@ -15,6 +15,7 @@ const DraggableLabel = ({type, infractionType, name, description, amount, jailTi
 
   if(type == "infraction"){
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+      console.log("DRAG STARTED", name);
       const dataToDrag = {
         name,
         description,
@@ -26,7 +27,7 @@ const DraggableLabel = ({type, infractionType, name, description, amount, jailTi
     }
   
     return (
-      <div draggable onDragStart={handleDragStart} className="w-[100%] rounded-lg bg-blue-900 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1 hover:cursor-grab active:cursor-grabbing">
+      <div draggable="true" onDragStart={handleDragStart} className="w-[100%] rounded-lg bg-blue-900 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1 hover:cursor-grab active:cursor-grabbing">
         {name} - {`$${amount}`}
       </div>
     )
