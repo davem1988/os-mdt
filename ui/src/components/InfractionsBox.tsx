@@ -16,7 +16,19 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
     const [amount, setAmount] = useState<number>(0);
     const [jailTime, setJailTime] = useState<number>(0);
 
-
+    useEffect(() => {
+        const preventDefaults = (e: Event) => {
+          e.preventDefault();
+        };
+      
+        window.addEventListener("dragover", preventDefaults);
+        window.addEventListener("drop", preventDefaults);
+      
+        return () => {
+          window.removeEventListener("dragover", preventDefaults);
+          window.removeEventListener("drop", preventDefaults);
+        };
+    }, []);
 
     useEffect(() => {
         let totalAmount = 0;
@@ -63,7 +75,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         console.log("DROPPED");
-        const data = e.dataTransfer.getData("application/json");
+        const data = e.dataTransfer.getData("text/plain");
         if (data) {
             const droppedInfraction = JSON.parse(data);
             setDroppedInfractions((prev) => [...prev, droppedInfraction])
@@ -72,6 +84,8 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
 
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+        console.log("DRAG OVER DROPZONE");
     }
     
     
@@ -80,8 +94,15 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
         setDroppedInfractions((prev) => prev.filter((_, i) => i !== index));
     }
 
-    const handleDragEnter = () => console.log("DRAG ENTER DROPZONE");
-    const handleDragLeave = () => console.log("DRAG LEAVE DROPZONE");
+    const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault(); // Ajoute ceci
+        console.log("DRAG ENTER DROPZONE");
+    }
+      
+    const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault(); // Ajoute ceci
+        console.log("DRAG LEAVE DROPZONE");
+    }
 
   return (
     <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3'>
@@ -109,7 +130,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
                   DROP HERE
                 </div>
             </div>
-            <div onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} className="bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border border-red-500">
+            <div onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragStart={(e) => e.dataTransfer.effectAllowed = "move"} onDragEnd={(e) => e.dataTransfer.dropEffect = "move"} className="bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border border-red-500">
                 {droppedInfractions.map((infraction, idx) => (
                     <div key={idx} onContextMenu={(e) => handleRemoveInfraction(idx, e)} className="w-[105%] rounded-lg bg-green-700 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pr-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1">
                     {infraction.name} - {`$${infraction.amount}`}
