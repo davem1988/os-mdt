@@ -91,7 +91,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
                         return (
                             <div key={index}>
                                 {category.infractions.map((infraction: any, infIndex: number) => (
-                                    <DraggableLabel type="infraction" name={infraction.name} description={infraction.description} amount={infraction.amount} jailTime={infraction.jailTime} />
+                                    <DraggableLabel key={infIndex} type="infraction" name={infraction.name} description={infraction.description} amount={infraction.amount} jailTime={infraction.jailTime} />
                                 ))}
                             </div>
                         ) 
