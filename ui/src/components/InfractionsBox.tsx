@@ -80,6 +80,9 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
         setDroppedInfractions((prev) => prev.filter((_, i) => i !== index));
     }
 
+    const handleDragEnter = () => console.log("DRAG ENTER DROPZONE");
+    const handleDragLeave = () => console.log("DRAG LEAVE DROPZONE");
+
   return (
     <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3'>
         Infractions
@@ -98,9 +101,15 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
                         ) 
                     })
                 }
-                
+                <div 
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  className="w-[200px] h-[200px] bg-green-500"
+                >
+                  DROP HERE
+                </div>
             </div>
-            <div onDrop={handleDrop} onDragOver={handleDragOver} className="bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2]">
+            <div onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} className="bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border border-red-500">
                 {droppedInfractions.map((infraction, idx) => (
                     <div key={idx} onContextMenu={(e) => handleRemoveInfraction(idx, e)} className="w-[105%] rounded-lg bg-green-700 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pr-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1">
                     {infraction.name} - {`$${infraction.amount}`}
