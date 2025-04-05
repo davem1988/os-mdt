@@ -118,7 +118,7 @@ export default function Home() {
   return (
     <main className={`flex items-center justify-center min-h-screen w-screen z-50 mt-10`}>
       <AppLayout>
-        {isOpen && type == "newInfraction" &&<NewInfractionModal citizen={selectedCitizen}/>}
+        {isOpen && type == "newInfraction" &&<NewInfractionModal citizen={selectedCitizen} initialOfficers={officers}/>}
         <div className={`flex-auto max-md:max-w-full ${isOpen ? 'blur-sm' : ''}`}>
           <div className="flex gap-2 max-md:flex-col">
             {/* Search and results section */}

@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import FileUploadPreview from "../FileUploadPreview";
 import { useModal } from "@/state/ModalContext";
@@ -7,7 +7,7 @@ import InfractionsBox from "../InfractionsBox";
 import OfficersBox from "../OfficersBox";
 import { nuiCallback } from "@/lib/nuiCallback";
 
-const NewInfractionModal = (citizen: any) => {
+const NewInfractionModal = (citizen: any, initialOfficers: any[]) => {
   const { isOpen, type, openModal, closeModal } = useModal();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +16,10 @@ const NewInfractionModal = (citizen: any) => {
   const [jailTime, setJailTime] = useState<number>(0);
   const [officers, setOfficers] = useState<any[]>([]);
   const [infractions, setInfractions] = useState<any[]>([])
+
+  useEffect(() => {
+    setOfficers(initialOfficers);
+  }, [])
 
   const handleInfractionsChanges = (amount: number, jail: number, allInfractions: any) => {
     setFinesAmount(amount);
@@ -113,7 +117,7 @@ const NewInfractionModal = (citizen: any) => {
                 </button>
                 <div className="flex gap-5 justify-between mt-16 max-md:mt-10">
                   <InfractionsBox onDroppedChanges={handleInfractionsChanges}/>
-                  <OfficersBox onDroppedChanges={handleOfficersChanges}/>
+                  <OfficersBox onDroppedChanges={handleOfficersChanges} officersList={officers}/>
                 </div>
                 <div className="w-[170px] h-[150px] mt-2 text-xs flex flex-col">
                   <p className="mb-2">Amende Max: {`$${finesAmount}`}</p>

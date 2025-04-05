@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react'
 import DraggableLabel from './DraggableLabel'
-import officersList from '../Officers.json'
 
 interface OfficersBoxProps {
+    officersList: any[];
     onDroppedChanges: (allOfficers: any) => void;
 }
 
-const OfficersBox = ({onDroppedChanges}: OfficersBoxProps) => {
+const OfficersBox = ({onDroppedChanges, officersList}: OfficersBoxProps) => {
     const [searchQuery, setSearchQuery] = useState<string>("")
     const [searchResult, setSearchResult] = useState<any[]>([]);
     const [officers, setOfficers] = useState<any>()
