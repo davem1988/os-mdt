@@ -80,7 +80,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
     }
 
   return (
-    <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3'>
+    <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3 select-auto '>
         Infractions
         <div className='absolute inset-0 bg-gradient-to-l from-orange-400 to-stone-900 rounded-md mask mask-border h-[91.8%] top-5 w-[109%]'></div>
         <div className='relative w-[110%] h-[92%] p-2 bg-stone-900 rounded-md z-10 flex flex-col items-center pb-2'>

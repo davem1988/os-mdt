@@ -29,12 +29,12 @@ const SearchSection: React.FC<SearchSectionProps> = ({ initialCitizen, players, 
       onSelectCitizen(parsedCitizen)
       setSelectedCitizen(parsedCitizen);
       setSelectedCharinfo(JSON.parse(parsedCitizen.charinfo));
-    } /* else {
+    } else {
       const stringData = Data;
       setSelectedCitizen(stringData.selectedCitizen)
       onSelectCitizen(stringData.selectedCitizen)
       setSelectedCharinfo(stringData.selectedCharinfo)
-    } */
+    }
   }, []);
 
   const handleSelectCitizen = (player: any) => {
