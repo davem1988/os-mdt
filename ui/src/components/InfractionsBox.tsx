@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import DraggableLabel from './DraggableLabel'
 import infractionsList from '../Infractions.json'
+import { useDrop } from 'react-dnd';
 
 const ItemTypes = {
     INFRACTION: "infraction",
