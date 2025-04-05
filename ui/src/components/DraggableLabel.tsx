@@ -1,58 +1,45 @@
+"use client"
+
 import React from 'react'
+import { useDrag } from 'react-dnd';
 
 interface DraggableLabelProps {
-    type: "infraction" | "officer",
-    infractionType?: "minor" | "major" | "criminal" | "road",
-    name: string,
-    description?: string,
-    amount?: number,
-    jailTime?: number,
-    gradeName?: string,
-    callsign?: string
+  type: "infraction" | "officer",
+  infractionType?: "minor" | "major" | "criminal" | "road",
+  name: string,
+  description?: string,
+  amount?: number,
+  jailTime?: number,
+  gradeName?: string,
+  callsign?: string
 }
 
-const DraggableLabel = ({type, infractionType, name, description, amount, jailTime, gradeName, callsign }: DraggableLabelProps) => {
+const DraggableLabel = ({ type, name, description, amount, jailTime, gradeName, callsign }: DraggableLabelProps) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: type === "infraction" ? "infraction" : "officer",
+    item: type === "infraction"
+      ? { name, description, amount, jailTime }
+      : { name, gradeName, callsign },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }), [name, description, amount, jailTime]);
 
-  if(type == "infraction"){
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-      console.log("DRAG STARTED", name);
-      e.dataTransfer.effectAllowed = "move";
-      const dataToDrag = {
-        name,
-        description,
-        amount,
-        jailTime
-      }
-      e.dataTransfer.setData("text/plain", JSON.stringify(dataToDrag));
-      
-    }
-  
+  const baseStyle = "w-[100%] rounded-lg h-[19px] text-[10px] font-sans pl-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1 hover:cursor-grab active:cursor-grabbing";
+
+  if (type === "infraction") {
     return (
-      <div draggable="true" onDragStart={handleDragStart} onDragEnd={(e) => e.dataTransfer.dropEffect = "move"} className="w-[100%] rounded-lg bg-blue-900 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1 hover:cursor-grab active:cursor-grabbing">
-        {name} - {`$${amount}`}
+      <div ref={drag} className={`${baseStyle} bg-blue-900 opacity-${isDragging ? '50' : '100'}`}>
+        {name} - ${amount}
       </div>
-    )
-  } else if (type == "officer") {
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-      const dataToDrag = {
-        name,
-        gradeName,
-        callsign,
-      }
-      e.dataTransfer.setData("text/plain", JSON.stringify(dataToDrag));
-      e.dataTransfer.effectAllowed = "move";
-    }
-  
-    return (
-      <div draggable onDragStart={handleDragStart} onDragEnd={(e) => e.dataTransfer.dropEffect = "move"} className="w-[100%] rounded-lg bg-blue-900 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1 hover:cursor-grab active:cursor-grabbing">
-        {gradeName} {callsign} - {name}
-      </div>
-    )
+    );
   }
 
-  
-}
+  return (
+    <div ref={drag} className={`${baseStyle} bg-blue-900`}>
+      {gradeName} {callsign} - {name}
+    </div>
+  );
+};
 
-export default DraggableLabel
-
-
+export default DraggableLabel;

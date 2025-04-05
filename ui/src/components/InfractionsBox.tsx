@@ -3,6 +3,12 @@
 import React, { useState, useEffect } from 'react'
 import DraggableLabel from './DraggableLabel'
 import infractionsList from '../Infractions.json'
+import { DndProvider, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
+const ItemTypes = {
+    INFRACTION: "infraction",
+};
 
 interface InfractionsBoxProps {
     onDroppedChanges: (totalAmount: number, totalJail: number, allInfractions: any) => void;
@@ -15,6 +21,17 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
     const [droppedInfractions, setDroppedInfractions] = useState<any[]>([]);
     const [amount, setAmount] = useState<number>(0);
     const [jailTime, setJailTime] = useState<number>(0);
+
+    const [{ isOver, canDrop }, drop] = useDrop(() => ({
+        accept: "infraction",
+        drop: (item: any) => {
+          setDroppedInfractions((prev) => [...prev, item]);
+        },
+        collect: (monitor) => ({
+          isOver: monitor.isOver(),
+          canDrop: monitor.canDrop(),
+        }),
+    }));
 
     useEffect(() => {
         const preventDefaults = (e: Event) => {
@@ -108,6 +125,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
     <div className='relative p-[2px] w-[160px] text-sm italic font-thin text-[#e9e9e9] mt-3'>
         Infractions
         {/* <div className='absolute inset-0 bg-gradient-to-l from-orange-400 to-stone-900 rounded-md mask mask-border h-[91.8%] top-5 w-[109%]'></div> */}
+        <DndProvider backend={HTML5Backend}>
         <div className='relative w-[110%] h-[92%] p-2 bg-stone-900 rounded-md flex flex-col items-center pb-2 z-[2]'>
             <input onChange={(e) => setSearchQuery(e.target.value)} type="text" id='infractionSearch' className='w-[105%] h-4 rounded-sm bg-[rgb(15,15,15)] text-[9px] placeholder:font-thin  pl-2 placeholder:text-[#353535] focus:outline-none text-[#d6d6d6]' placeholder='rechercher infraction'/>
             <div className="bg-[rgb(15,15,15)] w-[105%] h-[76px] mt-[6px] rounded-sm p-1 pb-1 overflow-auto">
@@ -130,14 +148,18 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
                   DROP HERE
                 </div>
             </div>
-            <div onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragStart={(e) => e.dataTransfer.effectAllowed = "move"} onDragEnd={(e) => e.dataTransfer.dropEffect = "move"} className="bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border border-red-500">
-                {droppedInfractions.map((infraction, idx) => (
-                    <div key={idx} onContextMenu={(e) => handleRemoveInfraction(idx, e)} className="w-[105%] rounded-lg bg-green-700 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pr-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1">
-                    {infraction.name} - {`$${infraction.amount}`}
-                  </div>
-                ))}
+            <div 
+              ref={drop} // ✅ c'est ici que la magie se fait maintenant
+              className={`bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border ${isOver ? 'border-green-500' : 'border-red-500'}`}
+            >
+              {droppedInfractions.map((infraction, idx) => (
+                <div key={idx} onContextMenu={(e) => handleRemoveInfraction(idx, e)} className="w-[105%] rounded-lg bg-green-700 h-[19px] text-[10px] not-italic font-[25] font-sans pl-2 pr-2 pb-[1px] flex justify-start items-center text-[#b4b4b4] mt-1">
+                  {infraction.name} - ${infraction.amount}
+                </div>
+              ))}
             </div>
         </div>
+        </DndProvider>
       
     </div>
   )
