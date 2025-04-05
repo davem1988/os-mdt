@@ -140,7 +140,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
                     })
                 }
                 <div 
-                  onDrop={handleDrop}
+                  ref={drop}
                   onDragOver={handleDragOver}
                   className="w-[200px] h-[200px] bg-green-500"
                 >
@@ -149,6 +149,7 @@ const InfractionsBox = ({ onDroppedChanges }: InfractionsBoxProps) => {
             </div>
             <div 
               ref={drop} // ✅ c'est ici que la magie se fait maintenant
+              onDragOver={handleDragOver}
               className={`bg-[rgb(15,15,15)] w-[105%] h-[100px] mt-[6px] pr-[10px] rounded-sm p-1 overflow-y-auto overflow-x-hidden z-[2] border ${isOver ? 'border-green-500' : 'border-red-500'}`}
             >
               {droppedInfractions.map((infraction, idx) => (
